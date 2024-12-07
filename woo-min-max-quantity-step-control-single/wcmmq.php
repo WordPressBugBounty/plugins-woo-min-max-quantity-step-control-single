@@ -8,11 +8,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 6.4
+ * Version: 6.5
  * Requires at least:    4.0.0
- * Tested up to:         6.5.3
+ * Tested up to:         6.7.1
  * WC requires at least: 3.0.0
- * WC tested up to: 	 8.9.1
+ * WC tested up to: 	 9.4.3
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '6.4.0');
+define('WC_MMQ_VERSION', '6.5.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -253,7 +253,7 @@ class WC_MMQ {
         //check current value
         $current_value = get_option(WC_MMQ_KEY);
         $default_value = self::$default_values;
-        $changed_value = false;
+        $changed_value = [];
         //Set default value in Options
         if ($current_value) {
             foreach ($default_value as $key => $value) {
@@ -374,18 +374,6 @@ class WC_MMQ {
         return $data['Name'];
     }
 
-    /**
-     * For checking anything
-     * Only for test, Nothing for anything else
-     * 
-     * @since 1.0
-     * @param void $something
-     */
-    public static function vd($something) {
-        echo '<div style="width:400px; margin: 30px 0 0 181px;">';
-        var_dump($something);
-        echo '</div>';
-    }
 
     public function admin_notice_missing_main_plugin(){
         if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
