@@ -3,7 +3,7 @@ Contributors: codersaiful,codeastrology,mdibrahimk48,unikforce,fazlebari,rafiul1
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purchase, limit quantity, customize woocommerce quantity
 Requires at least: 4.0.0
-Tested up to: 6.7.2
+Tested up to: 6.8
 Requires PHP: 5.4
 Stable tag: 6.7
 License: GPLv2 or later
