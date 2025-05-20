@@ -10,8 +10,7 @@ class Menu_Control
 
     public function wc_tab_minmax( $tab_array )
     {
-        // var_dump($tab_array);
-        $tab_array['wc-min-max'] = __( 'Min Max Step', 'wcmmq' );
+        $tab_array['wc-min-max'] = __( 'Min Max Step', 'woo-min-max-quantity-step-control-single' );
         return $tab_array;
     }
 }

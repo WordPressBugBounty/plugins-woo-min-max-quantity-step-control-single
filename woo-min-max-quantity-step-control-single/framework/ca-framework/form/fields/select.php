@@ -28,7 +28,7 @@ class Select extends Field_Base
         >
         <?php
         foreach( $this->options as $key=>$option ){
-            $option_value = is_string( $option ) ? $option : __( 'Undefined', 'ca-framework' );
+            $option_value = is_string( $option ) ? $option : __( 'Undefined', 'woo-min-max-quantity-step-control-single' );
             if($this->multiple){
                 $select = is_array( $value ) && in_array( $key, $value ) ? 'selected' : '';
             }else{

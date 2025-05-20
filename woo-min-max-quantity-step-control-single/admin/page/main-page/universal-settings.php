@@ -3,7 +3,7 @@
         <tr>
             <th class="wcmmq-inside">
                 <div class="wcmmq-table-header-inside">
-                    <h3><?php echo esc_html__( 'Settings (Universal)', 'wcmmq' ); ?></h3>
+                    <h3><?php echo esc_html__( 'Basic', 'woo-min-max-quantity-step-control-single' ); ?></h3>
                 </div>
                 
             </th>
@@ -14,31 +14,14 @@
     </thead>
 
     <tbody>
-        <!-- <tr>
-            <td>
-                <div class="wcmmq-form-control">
-                    <div class="form-label col-lg-6">
-                        LabelTagHere
-                    </div>
-                    <div class="form-field col-lg-6">
-                        InputFieldOrAnyOtherField
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="wcmmq-form-info">
-                    DescriptionOfField_and_docLink
-                </div> 
-            </td>
-        </tr> -->
         <tr>
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>
+                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'woo-min-max-quantity-step-control-single' ); ?></label>
                     </div>
                     <div class="form-field col-lg-6">
-                    <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
+                    <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo esc_attr( $saved_data[WC_MMQ_PREFIX . 'min_quantity'] ?? '' ); ?>"  type="number" step=any>
                     </div>
                 </div>
             </td>
@@ -53,10 +36,10 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                    <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label>
+                    <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','woo-min-max-quantity-step-control-single');?></label>
                     </div>
                     <div class="form-field col-lg-6">
-                    <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
+                    <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo esc_attr( $saved_data[WC_MMQ_PREFIX . 'max_quantity'] ?? '' ); ?>"  type="number" step=any>
                     </div>
                 </div>
             </td>
@@ -72,10 +55,10 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label>
+                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','woo-min-max-quantity-step-control-single');?></label>
                     </div>
                     <div class="form-field col-lg-6">
-                        <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
+                        <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo esc_attr( $saved_data[WC_MMQ_PREFIX . 'product_step'] ?? '' ); ?>"  type="number" step=any>
                     </div>
                 </div>
             </td>
@@ -116,7 +99,6 @@
 
         <?php
         //At this moment, no need it
-        // $exist_dfl_qty = $saved_data[WC_MMQ_PREFIX . 'default_quantity'] ?? false;
         $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
         if( $default_qty ){
         ?>
@@ -128,12 +110,12 @@
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
                         <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]">
-                            <?php echo esc_html__('Default Quantity','wcmmq');?> 
-                            <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span>
+                            <?php echo esc_html__('Default Quantity','woo-min-max-quantity-step-control-single');?> 
+                            <span class="hightlighted_text"><?php echo esc_html__('(Optional)','woo-min-max-quantity-step-control-single');?></span>
                         </label>
                     </div>
                     <div class="form-field col-lg-6">
-                        <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
+                        <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo esc_attr( $saved_data[WC_MMQ_PREFIX . 'default_quantity'] ); ?>"  type="number" step=any>
                         <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                     </div>
                 </div>
@@ -156,12 +138,12 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','wcmmq');?> 
-                            <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span>
+                        <label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','woo-min-max-quantity-step-control-single');?> 
+                            <span class="hightlighted_text"><?php echo esc_html__('(Optional)','woo-min-max-quantity-step-control-single');?></span>
                         </label>
                     </div>
                     <div class="form-field col-lg-6">
-                        <input name="data[decimal_separator]" id="data[decimal_separator]" class="ua_input_number" value="<?php echo $decimal_separator ; ?>">
+                        <input name="data[decimal_separator]" id="data[decimal_separator]" class="ua_input_number" value="<?php echo esc_attr( $decimal_separator ) ; ?>">
                     </div>
                 </div>
             </td>
@@ -179,19 +161,19 @@
             * @ since 3.6.0
             * @ Author Fazle Bari 
             -->
-            <?php $quantiy_box_archive = isset( $saved_data['quantiy_box_archive' ] ) && $saved_data['quantiy_box_archive' ] == '1' ? 'checked' : false; ?>
+            <?php $quantiy_box_archive = isset( $saved_data['quantiy_box_archive' ] ) && $saved_data['quantiy_box_archive' ] == '1' ? 'checked' : ''; ?>
         <tr>
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_quantiy_box_archive"><?php echo esc_html__('Archive Quantity Box','wcmmq');?></label>
+                        <label for="_quantiy_box_archive"><?php echo esc_html__('Archive Quantity Box','woo-min-max-quantity-step-control-single');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch">
                             <input value="1" name="data[quantiy_box_archive]"
-                                <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="_quantiy_box_archive">
+                                <?php echo esc_attr( $quantiy_box_archive ); /* finding checked or null */ ?> type="checkbox" id="_quantiy_box_archive">
                             <div class="slider round"><!--ADDED HTML -->
-                                <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                <span class="on"><?php echo esc_html__('ON','woo-min-max-quantity-step-control-single');?></span><span class="off"> <?php echo esc_html__('OFF','woo-min-max-quantity-step-control-single');?></span><!--END-->
                             </div>
                         </label>
                     </div>
@@ -211,19 +193,19 @@
             </td>
         </tr>
 
-        <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
+        <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : ''; ?>
         <tr>
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_disable_order_page"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label>
+                        <label for="_disable_order_page"><?php echo esc_html__('Order Page (Condition)','woo-min-max-quantity-step-control-single');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch">
                             <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
-                                <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_disable_order_page">
+                                <?php echo esc_attr( $disable_order_page ); /* finding checked or null */ ?> type="checkbox" id="_disable_order_page">
                             <div class="slider round"><!--ADDED HTML -->
-                                <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                <span class="on"><?php echo esc_html__('ON','woo-min-max-quantity-step-control-single');?></span><span class="off"> <?php echo esc_html__('OFF','woo-min-max-quantity-step-control-single');?></span><!--END-->
                             </div>
                         </label>
                     </div>

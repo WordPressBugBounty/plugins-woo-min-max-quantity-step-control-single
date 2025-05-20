@@ -35,7 +35,7 @@ function wcmmq_set_min_qt_in_block_loop ($content, $data, $product){
     if ( $product->supports( 'ajax_add_to_cart' ) ) {
         $attributes['class'] .= ' ajax_add_to_cart';
     }
-
+    /* translators: 1: Product URL 2: attributes 3: Add to cart text */
     $saiful_test = sprintf(
         '<a href="%s" %s>%s</a>',
         esc_url( $product->add_to_cart_url() ),

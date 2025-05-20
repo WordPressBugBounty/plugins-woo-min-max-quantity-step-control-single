@@ -58,35 +58,6 @@ class Quantiy_Archive
                 $button = ob_get_clean();
             }
         }
-        
-
-        /**
-         * 
-         * 
-         * 
-         //Previous code
-         if (!in_array($product_type, array('variable', 'grouped', 'external'))) {
-            // only if can be purchased
-            if ($product->is_purchasable()) {
-                // show qty +/- with button
-                ob_start();
-                woocommerce_simple_add_to_cart();
-                $button = ob_get_clean();
-            }
-        }elseif( $product_type == 'variable' ){
-            if ($product->is_purchasable()) {
-                //woocommerce_template_single_add_to_cart
-                //woocommerce_template_loop_add_to_cart
-                // show qty +/- with button
-                ob_start();
-                woocommerce_template_single_add_to_cart();
-                $button = ob_get_clean();
-            }
-        }
-         * 
-         * 
-         */
-
         return $button;
     }
 
@@ -99,11 +70,28 @@ class Quantiy_Archive
     }
 
     public function ajax_add_to_cart(){
+        
+        $nonce = sanitize_text_field( wp_unslash( $_POST['_nonce'] ?? '' ) );
+        if ( empty($nonce) || ! wp_verify_nonce( $nonce, WC_MMQ_PLUGIN_BASE_FOLDER ) ){
+            $data = array(
+                'error' => true,
+                'message' => __('Nonce verification failed by Min Max Control Plugin', 'woo-min-max-quantity-step-control-single'),
+            );
+
+            wp_send_json($data);
+            wp_die();
+            return;
+        }
+
         $ajax_cart = apply_filters('wcmmq_ajax_cart_single_page', false);
-        if(!$ajax_cart && is_single()) return;
-        $product_id = apply_filters('woocommerce_add_to_cart_product_id', absint($_POST['product_id']));
-        $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
-        $variation_id = absint($_POST['variation_id']);
+        if(! $ajax_cart && is_single() ){
+            wp_die();return;
+        }
+
+        $product_id = apply_filters('woocommerce_add_to_cart_product_id', absint( wp_unslash( $_POST['product_id'] ?? '' ) ) );
+        $quantity = sanitize_text_field( wp_unslash( $_POST['quantity'] ?? 1 ) );
+        $quantity = empty( $quantity ) ? 1 : wc_stock_amount( $quantity );
+        $variation_id = absint( wp_unslash( $_POST['variation_id'] ?? '' ) );
         $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
         $product_status = get_post_status($product_id);
 
@@ -116,6 +104,7 @@ class Quantiy_Archive
             }
 
             \WC_AJAX::get_refreshed_fragments();
+            return;
         } else {
 
             $data = array(
@@ -123,7 +112,7 @@ class Quantiy_Archive
                 'product_url' => apply_filters('woocommerce_cart_redirect_after_error', get_permalink($product_id), $product_id)
             );
 
-            echo wp_send_json($data);
+            wp_send_json($data);
         }
 
         wp_die();

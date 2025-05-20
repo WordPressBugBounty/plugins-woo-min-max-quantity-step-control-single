@@ -10,7 +10,7 @@
 function wcmmq_product_edit_tab( $product_data_tab){
     /*
     $product_data_tab['wcmmq_min_max_step'] = array(
-            'label' => __('Min Max & Step','wcmmq'),
+            'label' => __('Min Max & Step','woo-min-max-quantity-step-control-single'),
             'target'   => 'wcmmq_min_max_step', //This is targetted div's id
             'class'     => array('show_if_simple'),//array('hide_if_grouped','hide_if_downloadable'),
             );
@@ -18,7 +18,7 @@ function wcmmq_product_edit_tab( $product_data_tab){
     */
 
     $my_tab['wcmmq_min_max_step'] = array(
-        'label' => __('Min Max & Step','wcmmq'),
+        'label' => __('Min Max & Step','woo-min-max-quantity-step-control-single'),
         'target'   => 'wcmmq_min_max_step', //This is targetted div's id
         'class'     => array( 'hide_if_grouped' ), //'hide_if_grouped',//'hide_if_downloadable',
         );

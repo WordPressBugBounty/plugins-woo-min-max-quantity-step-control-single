@@ -33,7 +33,7 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
             <tr>
                 <th class="wcmmq-inside">
                     <div class="wcmmq-table-header-inside">
-                        <h3><?php echo esc_html__( $section_title, 'wcmmq' ); ?></h3>
+                        <h3><?php echo esc_html( $section_title ); ?></h3>
                     </div>
                     
                 </th>
@@ -82,7 +82,7 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
                                     ?>
                                     <div class="extra-area">
                                         <div class="language-area" style="border-bottom: 4px solid black;">
-                                            <p class="lang-area-title"><?php echo esc_html__( 'WPML Translate Area', 'wcmmq_pro' ); ?></p>
+                                            <p class="lang-area-title"><?php echo esc_html__( 'WPML Translate Area', 'woo-min-max-quantity-step-control-single' ); ?></p>
                                             <?php
                                             foreach( $active_langs as $active_lang ){
                                                 if( ! is_array( $active_lang ) ) continue;
@@ -146,7 +146,7 @@ if( !function_exists( 'wcmmq_tawkto_code_header' ) ){
     function wcmmq_tawkto_code_header(){
         global $current_screen;
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
-        if( strpos( $s_id, 'wcmmq') === false ) return;
+        if( strpos( $s_id, 'woo-min-max-quantity-step-control-single') === false ) return;
 
         $temp_permission = false;
         $submitted = filter_input_array(INPUT_POST);
@@ -226,7 +226,7 @@ function wcmmq_submit_issue_link(){
     ?>
     <p class="wpt-issue-submit">
 <?php
-$content_of_mail = __( 'I have found an issue with your Min Max and Step Control plugin. I will explain here with screenshot.Issues And Screenshots:', 'wcmmq' );
+$content_of_mail = __( 'I have found an issue with your Min Max and Step Control plugin. I will explain here with screenshot.Issues And Screenshots:', 'woo-min-max-quantity-step-control-single' );
 ?>
         <b>ISSUE SUBMIT:</b> If you founded any issue, Please inform us. That will be very helpful for us to Fix.<br>
         <a href="https://github.com/codersaiful/woo-min-max-quantity-step-control-single/issues/new" target="_blank">SUBMIT ISSUE</a> or 
@@ -247,7 +247,7 @@ if( ! function_exists('wcmmq_doc_link') ){
      */
     function wcmmq_doc_link( $url, $title='Helper doc' ){
         ?>
-            <a href="<?php echo esc_url($url)?>" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i><?php esc_html_e( $title ); ?></a>
+            <a href="<?php echo esc_url($url)?>" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i><?php echo esc_html( $title ); ?></a>
         <?php
     }
 }

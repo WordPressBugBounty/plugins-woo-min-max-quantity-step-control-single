@@ -49,19 +49,12 @@ class Plugin_Installer
     
             // Install and activate the plugin
             $result = $this->install_zip( $this->plugin_zip_url );
-            echo '<pre>';
-            var_dump($result);
-            echo '</pre>';
-            exit();
-            exit;
-            die();
-            die;
+
             if (is_wp_error($result)) {
                 // Handle error, if any
-                echo 'Error installing the plugin: ' . esc_html($result->get_error_message());
+                echo esc_html( $result->get_error_message() );
             } else {
                 // Redirect to your admin page menu
-                // wp_redirect(admin_url('admin.php?page=wcmmq-product-quick-edit'));
                 exit;
             }
         }

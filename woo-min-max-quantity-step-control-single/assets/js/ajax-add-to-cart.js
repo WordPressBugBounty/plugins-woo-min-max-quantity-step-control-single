@@ -38,10 +38,9 @@
                 product_sku: '',
                 quantity: product_qty,
                 variation_id: variation_id,
+                _nonce: WCMMQ_DATA._nonce
             };
-
             $(document.body).trigger('adding_to_cart', [$thisbutton, data]);
-            console.log(wc_add_to_cart_params);
             $.ajax({
                 type: 'post',
                 url: wc_add_to_cart_params.ajax_url,
@@ -53,10 +52,12 @@
                     $thisbutton.addClass('added').removeClass('loading');
                 },
                 success: function (response) {
-                    console.log(response);
+
                     if (response.error && response.product_url) {
                         window.location = response.product_url;
                         return;
+                    }else if (response.error && response.message && response.message.length > 0) {
+                        alert(response.message);
                     } else {
                         //Go to cart page, If enable from WooCommerce->Settings->Products->General->Add to cart behaviour
                         if(wc_add_to_cart_params.cart_redirect_after_add === 'yes'){

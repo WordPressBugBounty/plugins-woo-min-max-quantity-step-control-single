@@ -4,7 +4,7 @@
         <tr class="user_can_not_edit ">
             <th class="wcmmq-inside">
                 <div class="wcmmq-table-header-inside">
-                    <h3>Quantity Prefix/Suffix</h3>
+                    <h3>Prefix/Suffix</h3>
                 </div>
                 
             </th>
@@ -24,7 +24,7 @@
                     <div class="form-field col-lg-6">
                     <?php
                             $thsis_value = '';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -52,7 +52,7 @@
                     <div class="form-field col-lg-6">
                     <?php
                             $thsis_value = '';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -210,7 +210,7 @@
                         <div class="form-field col-lg-6">
                             <?php
                             $thsis_value = 'Your cart total amount must be equal to or more of [cart_min_price]';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -235,7 +235,7 @@
                         </div>
                         <?php
                             $thsis_value = 'Your cart total amount must be equal to or less than [cart_max_price]';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -260,7 +260,7 @@
                         <div class="form-field col-lg-6">
                             <?php
                                 $thsis_value = "Your cart total amount must be equal to or less than [cart_max_price]";
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -286,7 +286,7 @@
                         <div class="form-field col-lg-6">
                         <?php
                             $thsis_value = "Your cart item's total quantity must be equal to or more than [cart_min_quantity]";  
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -312,7 +312,7 @@
                         <div class="form-field col-lg-6">
                         <?php
                             $thsis_value = 'Please enter a valid value. Value should be multiplier of [step_quantity]';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -338,7 +338,7 @@
                         <div class="form-field col-lg-6">
                         <?php
                             $thsis_value = 'Maximum variation quantity total of "[product_name]" should be or less then [vari_total_max_qty]';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -364,7 +364,7 @@
                         <div class="form-field col-lg-6">
                         <?php
                             $thsis_value = 'Minimum variation quantity total of "[product_name]" should be or greater then [vari_total_min_qty]';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,
@@ -390,7 +390,7 @@
                         <div class="form-field col-lg-6">
                         <?php
                             $thsis_value = 'Maximum variation count total of "[product_name]" should be or less then [vari_count_total]';
-                            $f_key_name = 'wcmmq_' . rand(123,456);
+                            $f_key_name = 'wcmmq_' . wp_rand(123,456);
                             $settings = array(
                                 'textarea_name'     => $f_key_name,
                                 'textarea_rows'     => 3,

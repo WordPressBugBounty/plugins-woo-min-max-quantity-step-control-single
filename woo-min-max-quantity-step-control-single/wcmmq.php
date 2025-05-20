@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Min Max Quantity & Step Control for WooCommerce
+ * Plugin Name: Min Max Control - Min Max Quantity & Step Control for WooCommerce
  * Requires Plugins: woocommerce
  * Plugin URI: https://codeastrology.com/min-max-quantity/
  * Description: [Min Max Quantity & Step Control for WooCommerce] offers to display specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled. for any issue: codersaiful@gmail.com
@@ -8,14 +8,17 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 6.7
+ * Version: 6.8
  * Requires at least:    4.0.0
  * Tested up to:         6.8
  * WC requires at least: 3.0.0
- * WC tested up to: 	 9.6.2
+ * WC tested up to: 	 9.8.5
  * 
- * Text Domain: wcmmq
+ * Text Domain: woo-min-max-quantity-step-control-single
  * Domain Path: /languages/
+ * 
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
@@ -26,7 +29,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '6.7.0');
+define('WC_MMQ_VERSION', '6.8.4');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -76,23 +79,22 @@ WC_MMQ::$default_values = array(
     'quantiy_box_archive' => '0',//If we want enable by default, set 1 for this item
     WC_MMQ_PREFIX . 'sufix_quantity' => '',
     WC_MMQ_PREFIX . 'qty_plus_minus_btn' => '1', //Added at 1.8.4 Version
-    WC_MMQ_PREFIX . 'step_error_valiation'   => __( "Please enter a valid value. The two nearest valid values are [should_min] and [should_next]", 'wcmmq' ),
-    WC_MMQ_PREFIX . 'msg_min_limit' => __('Minimum quantity should [min_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
-    WC_MMQ_PREFIX . 'msg_max_limit' => __('Maximum quantity should [max_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
-    WC_MMQ_PREFIX . 'msg_max_limit_with_already' => __('You have already [current_quantity] item of "[product_name]"', 'wcmmq'), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
-    WC_MMQ_PREFIX . 'min_qty_msg_in_loop' => __('Minimum qty is', 'wcmmq'),
-    'msg_min_price_cart' => __('Your cart total amount must be equal to or more of [cart_min_price]', 'wcmmq'),
-    'msg_max_price_cart' => __('Your cart total amount must be equal to or less than [cart_max_price]', 'wcmmq'),
-    'msg_min_quantity_cart' => __("Your cart item's total quantity must be equal to or more than [cart_min_quantity]", 'wcmmq'),
-    'msg_max_quantity_cart' => __("Your cart item's total quantity must be equal to or less than [cart_max_quantity]", 'wcmmq'),
-    'msg_step_quantity_cart' => __("Please enter a valid value. Value should be multiplier of [step_quantity]", 'wcmmq'),
-    'msg_vari_total_max_qty' => __('Maximum variation quantity total of "[product_name]" should be or less then [vari_total_max_qty]', 'wcmmq'),
-    'msg_vari_total_min_qty' => __('Minimum variation quantity total of "[product_name]" should be or greater then [vari_total_min_qty]', 'wcmmq'),
-    'msg_vari_count_total' => __('Maximum variation count total of "[product_name]" should be or less then [vari_count_total]', 'wcmmq'),
+    WC_MMQ_PREFIX . 'step_error_valiation'   => __( "Please enter a valid value. The two nearest valid values are [should_min] and [should_next]", 'woo-min-max-quantity-step-control-single' ),
+    WC_MMQ_PREFIX . 'msg_min_limit' => __('Minimum quantity should [min_quantity] of "[product_name]"', 'woo-min-max-quantity-step-control-single'), //First %s = Quantity and Second %s is Product Title
+    WC_MMQ_PREFIX . 'msg_max_limit' => __('Maximum quantity should [max_quantity] of "[product_name]"', 'woo-min-max-quantity-step-control-single'), //First %s = Quantity and Second %s is Product Title
+    WC_MMQ_PREFIX . 'msg_max_limit_with_already' => __('You have already [current_quantity] item of "[product_name]"', 'woo-min-max-quantity-step-control-single'), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
+    WC_MMQ_PREFIX . 'min_qty_msg_in_loop' => __('Minimum qty is', 'woo-min-max-quantity-step-control-single'),
+    'msg_min_price_cart' => __('Your cart total amount must be equal to or more of [cart_min_price]', 'woo-min-max-quantity-step-control-single'),
+    'msg_max_price_cart' => __('Your cart total amount must be equal to or less than [cart_max_price]', 'woo-min-max-quantity-step-control-single'),
+    'msg_min_quantity_cart' => __("Your cart item's total quantity must be equal to or more than [cart_min_quantity]", 'woo-min-max-quantity-step-control-single'),
+    'msg_max_quantity_cart' => __("Your cart item's total quantity must be equal to or less than [cart_max_quantity]", 'woo-min-max-quantity-step-control-single'),
+    'msg_step_quantity_cart' => __("Please enter a valid value. Value should be multiplier of [step_quantity]", 'woo-min-max-quantity-step-control-single'),
+    'msg_vari_total_max_qty' => __('Maximum variation quantity total of "[product_name]" should be or less then [vari_total_max_qty]', 'woo-min-max-quantity-step-control-single'),
+    'msg_vari_total_min_qty' => __('Minimum variation quantity total of "[product_name]" should be or greater then [vari_total_min_qty]', 'woo-min-max-quantity-step-control-single'),
+    'msg_vari_count_total' => __('Maximum variation count total of "[product_name]" should be or less then [vari_count_total]', 'woo-min-max-quantity-step-control-single'),
     '_cat_ids' => false,
 );
 
-//var_dump(WC_MMQ::$default_values);
 /**
  * Main Class for "WooCommerce Min Max Quantity & Step Control"
  * We have included file from __constructor of this class [WC_MMQ]
@@ -189,7 +191,7 @@ class WC_MMQ {
         require_once __DIR__ . '/autoloader.php';
         
         
-        if( WC_MMQ\Framework\Plugin_Required::fail() ){
+        if( \WC_MMQ\Framework\Plugin_Required::fail() ){
             return;
         }
 
@@ -208,23 +210,22 @@ class WC_MMQ {
 
         if ( is_admin() ) {
      
-            WC_MMQ\Framework\Recommeded::check();
+            \WC_MMQ\Framework\Recommeded::check();
             include_once $dir . '/admin/functions.php';
             include_once $dir . '/admin/product_panel.php';
             include_once $dir . '/admin/add_options_admin.php';
-            // include_once $dir . '/admin/set_menu_and_fac.php';
             include_once $dir . '/admin/plugin_setting_link.php';
 
-            new WC_MMQ\Admin\Admin_Loader();
+            new \WC_MMQ\Admin\Admin_Loader();
         }
-        WC_MMQ\Includes\Feature_Loader::run();
-        WC_MMQ\Modules\Module_Controller::instance();
+        \WC_MMQ\Includes\Feature_Loader::run();
+        \WC_MMQ\Modules\Module_Controller::instance();
         
         
         include_once $dir . '/includes/enqueue.php';
         
         include_once $dir . '/includes/set_max_min_quantity.php';
-        WC_MMQ\Includes\Min_Max_Controller::init();
+        \WC_MMQ\Includes\Min_Max_Controller::init();
     }
 
     /**
@@ -239,8 +240,8 @@ class WC_MMQ {
      * @access public
      */
     public function i18n() {
-        // load_plugin_textdomain('wcmmq');
-        load_plugin_textdomain('wcmmq', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
+        // load_plugin_textdomain('woo-min-max-quantity-step-control-single');
+        load_plugin_textdomain('woo-min-max-quantity-step-control-single', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
     }
 
 
@@ -376,15 +377,15 @@ class WC_MMQ {
 
 
     public function admin_notice_missing_main_plugin(){
-        if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
 
            $message = sprintf(
-                   esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'wcmmq' ),
-                   '<strong>' . esc_html__( 'Min Max Control', 'wcmmq' ) . '</strong>',
-                   '<strong><a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '" target="_blank">' . esc_html__( 'WooCommerce', 'wcmmq' ) . '</a></strong>'
+                /* translators: 1: Plugin name 2: WooCommerce with link */
+                esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'woo-min-max-quantity-step-control-single' ),
+                '<strong>' . esc_html__( 'Min Max Control', 'woo-min-max-quantity-step-control-single' ) . '</strong>',
+                '<strong><a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '" target="_blank">' . esc_html__( 'WooCommerce', 'woo-min-max-quantity-step-control-single' ) . '</a></strong>'
            );
 
-           printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p></div>', $message );
+           printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p></div>', wp_kses_post( $message ) );
     }
     
 
@@ -392,7 +393,7 @@ class WC_MMQ {
 
 
 //Call to Instance
-$WC_MMQ = WC_MMQ::instance();
+$WC_MMQ = \WC_MMQ::instance();
 
 register_activation_hook(__FILE__, array('WC_MMQ', 'install'));
 register_deactivation_hook(__FILE__, array('WC_MMQ', 'uninstall'));

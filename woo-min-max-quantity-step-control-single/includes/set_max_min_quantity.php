@@ -18,7 +18,6 @@
 );
 $message = 'this is a[product_name] message. this is a[max_quantity] message  with [min_quantity] and with other value.';
 wcmmq_message_convert_replace( $message, $args );
-var_dump(wcmmq_message_convert_replace($message, $args));
  *
  * @param String $message
  * @param Array $args
@@ -26,7 +25,6 @@ var_dump(wcmmq_message_convert_replace($message, $args));
  */
 
 function wcmmq_message_convert_replace( $message, $args, $product_id = null ){
-    $message = __( $message, 'wcmmq' );
     $defaults = array(
         'min_quantity' => false,
         'max_quantity' => false,
@@ -56,7 +54,7 @@ function wcmmq_check_quantity_in_cart($product_id,$variation_id = 0) {
     global $woocommerce;
     if( ! is_object($woocommerce->cart)) return 0;
     if( ! method_exists($woocommerce->cart, 'get_cart')) return 0;
-    // var_dump($woocommerce);
+
     foreach($woocommerce->cart->get_cart() as $key => $value ) {
         if( $product_id == $value['product_id'] && $variation_id == $value['variation_id'] ) {
             return $value['quantity'];
@@ -301,7 +299,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous ){
         return $bool;
     }elseif($min_quantity && $total_quantity < $min_quantity ){
-        $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'woo-min-max-quantity-step-control-single' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return false;
@@ -311,7 +309,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
             $message .= sprintf( wcmmq_get_message( 'msg_max_limit_with_already' ), $current_qty_inCart, $product_name );
             $message .= " <br>";
         }
-        $message .= sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message .= sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'woo-min-max-quantity-step-control-single' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return false;
@@ -432,12 +430,12 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
     }elseif( empty($max_quantity) && $quantity >= $min_quantity && $modulous ){
         return true;
     }elseif(!empty($max_quantity) && $max_quantity > 0 && $quantity > $max_quantity ){
-        $message = sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'woo-min-max-quantity-step-control-single' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return;
     }elseif( $quantity < $min_quantity ){
-        $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'woo-min-max-quantity-step-control-single' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return;
@@ -468,7 +466,6 @@ function wcmmq_quantity_input_args( $args, $product){
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return $args;
-    //if(is_cart() ){
 
     $variation_id = false;
     $product_id = $id = $product->get_id();
@@ -575,14 +572,10 @@ function wcmmq_quantity_input_args( $args, $product){
     // $args['input_value'] = $default_quantity;
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
-    // var_dump($args);
-    //}
+
 
     return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
 }
-// add_filter('woocommerce_loop_add_to_cart_args','wcmmq_quantity_input_args',999,2);
-// add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args',999,2);
-// add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',999,2); //For Variable product
 
 /**
  * Specially for Order Page
@@ -790,7 +783,6 @@ function wcmmq_s_set_min_for_single( $quantity, $product ){
     }
     return 1;
 }
-// add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single', 99, 2 );
 
 /**
  * Set limit on Single product page for Maximum Quantity of Product
@@ -806,7 +798,6 @@ function wcmmq_s_set_max_for_single( $quantity, $product ){
     }
     return 1;
 }
-//add_filter('woocommerce_quantity_input_max','wcmmq_s_set_max_for_single', 99, 2 );
 
 /**
  * For Order Status update
@@ -817,7 +808,6 @@ function wcmmq_step_set_for_order_status_update($pp){
     if( is_admin() )
         return 0.01;
 }
-//add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_update',888,1);
 
 /**
  * Set limit on Single product page for Step Quantity of Product
@@ -834,7 +824,6 @@ function wcmmq_step_set_step_quantity( $quantity, $product ){
     }
     return 1;
 }
-// add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 99, 2);
 
 
 /**
@@ -846,7 +835,8 @@ function wcmmq_step_set_step_quantity( $quantity, $product ){
  */
 function wcmmq_set_prefix_quanity(){
     $prefix = WC_MMQ::getOption( WC_MMQ_PREFIX . 'prefix_quantity' );
-    echo !empty( $prefix ) ? "<span class='wcmmq_sufix_prefix wcmmq_prefix'>$prefix</span>" : false;
+    if( empty( $prefix ) ) return;?> 
+    <span class='wcmmq_sufix_prefix wcmmq_prefix'><?php echo esc_html( $prefix ); ?></span> <?php
 }
 add_action( 'woocommerce_before_add_to_cart_quantity','wcmmq_set_prefix_quanity' );
 
@@ -860,12 +850,14 @@ add_action( 'woocommerce_before_add_to_cart_quantity','wcmmq_set_prefix_quanity'
  */
 function wcmmq_set_sufix_quanity(){
     $sufix = WC_MMQ::getOption( WC_MMQ_PREFIX . 'sufix_quantity' );
-    echo !empty( $sufix ) ? "<span class='wcmmq_sufix_prefix wcmmq_sufix'>$sufix</span>" : false;//$sufix;
+    if( empty( $sufix ) ) return;?>
+    <span class='wcmmq_sufix_prefix wcmmq_sufix'><?php echo esc_html( $sufix ); ?></span> <?php
+   
 }
 add_action( 'woocommerce_after_add_to_cart_quantity','wcmmq_set_sufix_quanity',0 );
 
 function wcmmq_add_custom_css(){
-    echo <<<EOF
+?>
 <style type="text/css">
 span.wcmmq_prefix {
     float: left;
@@ -873,7 +865,7 @@ span.wcmmq_prefix {
     margin: 0;
 }
 </style>
-EOF;
+<?php
 }
 add_action('wp_head','wcmmq_add_custom_css');
 

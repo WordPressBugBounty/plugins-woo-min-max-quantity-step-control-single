@@ -57,22 +57,14 @@ class Module_Controller extends Base
 
     public function __construct()
     {
-        // $this->page_loader = new Page_Loader();
 
-        // $this->parent_menu = $this->page_loader->main_slug;
-        $this->menu_title = __( 'Module Switcher', 'wcmmq' );
+        $this->menu_title = __( 'Module On/Off', 'woo-min-max-quantity-step-control-single' );
         
         $module_item = array(
-            // 'loop-template-button' => array(
-            //     'key'   => 'loop-template-button',
-            //     'name'  =>  __( 'Button Template for Loop', 'wcmmq' ),
-            //     'desc'  =>  __( 'Specially for Shop page and related proucts loop. Enable and Disable on Shop Page as well as on Related product Section.', 'wcmmq' ),
-            //     'status'=>  'on',
-            // ),
             'guttenberg-block' => array(
                 'key'   => 'guttenberg-block',
-                'name'  =>  __( 'Min Max Step in Guttenberg Block', 'wcmmq' ),
-                'desc'  =>  __( 'For Gutenberg block shop page loop, Enable disable.', 'wcmmq' ),
+                'name'  =>  __( 'Min Max Step in Guttenberg Block', 'woo-min-max-quantity-step-control-single' ),
+                'desc'  =>  __( 'For Gutenberg block shop page loop, Enable disable.', 'woo-min-max-quantity-step-control-single' ),
                 'status'=>  'on',
                 'dir'   =>  __DIR__,
             ),
@@ -92,7 +84,6 @@ class Module_Controller extends Base
 
         $this->option_key = $this->prefix . $this->option_key;
         $this->active_module_key = $this->prefix . $this->active_module_key;
-        // add_action( 'admin_menu', [$this, 'admin_menu'] );
 
        foreach( $this->get_active_modules() as $key_modl=>$modl ){
            $file_dir = ! empty( $modl['dir'] ) ? $modl['dir'] : $this->dir;
@@ -161,12 +152,6 @@ class Module_Controller extends Base
         return $this;
     }
 
-    public function admin_menu()
-    {
-        
-        // $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce', 'module_page' );
-        // add_submenu_page( $this->parent_menu, $this->menu_title, $this->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
-    }
 
     public function module_page()
     {

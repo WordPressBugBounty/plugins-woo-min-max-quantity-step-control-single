@@ -2,8 +2,9 @@
     'use strict';
     $(document).ready(function(){
         
-        $('.ua_input_select,.wcmmq_select_terms').select2();
-        $('#select#wcmmq_term_ids').select2();
+        // $('.ua_input_select,.wcmmq_select_terms').select2();
+        // $('#select#wcmmq_term_ids').select2();
+        $('select#wcmmq_supported_terms').select2();
         
         /**
          * Support terms -> on after change,
@@ -167,6 +168,68 @@
             
         });
     }
+
+    function findOnlyText(Element){
+        var output = Element.map(function () {
+            var val = $(this).val();
+            var text = $(this).text();
+            return val + ' ' + text; // Get text from each element
+        })
+        .get() // Convert jQuery object to plain array
+        .join(' ') // Join with space
+        .replace(/\s+/g, ' ') // Replace multiple whitespaces with one space
+        .trim();
+        return output;
+    }
+
+    function urlUpdateBasedOnSearchTerm( searchTerm ){
+        let url = new URL(window.location.href);
+
+        url.hash = 'search=' + searchTerm;
+        window.history.replaceState(null, '', url);
+    }
+
+    $(document.body).on('input','#wcmmq-setting-search-input', function() {
+        var searchTerm = $(this).val().replace(/\s+/g, ' ').trim();
+        searchTerm = searchTerm.toLowerCase();
+
+        if(searchTerm !== ''){
+            $('.wcmmq-configure-tab-wrapper').hide();
+        }else{
+
+            $('.wcmmq-configure-tab-wrapper').show();
+            $('.wcmmq-configure-tab-wrapper').find('a').first().trigger('click');
+        }
+
+        var singlePanel = $('#wcmmq-main-configuration-form').find('.wcmmq-section-panel');
+        singlePanel.each(function(){
+            var selectedElName = 'td label, td input,td select option,.wcmmq-custom-select-box';
+            var targetElement = $(this).find(selectedElName);
+            var text = findOnlyText( targetElement ).toLowerCase();
+            if(text == ''){return;}
+
+            if (text.indexOf(searchTerm) > -1) {
+
+                $(this).show();
+                var TableTr = $(this).find('table tr');
+                TableTr.each(function(){
+                    var tableHead = $(this).find('div.wcmmq-table-header-inside');
+                    var targetRow = $(this).find(selectedElName);
+                    var towText = findOnlyText( targetRow ).toLowerCase();// $(this).find('label').text();
+
+                   if(towText.indexOf(searchTerm) > -1 || tableHead.length > 0){
+
+                       $(this).show();
+                   }else{
+                       $(this).fadeOut('fast');
+                   }
+                });
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+
 
 
 })(jQuery);

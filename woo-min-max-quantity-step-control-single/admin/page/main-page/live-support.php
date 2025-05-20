@@ -3,7 +3,7 @@
         <tr>
             <th class="wcmmq-inside">
                 <div class="wcmmq-table-header-inside">
-                    <h3><?php echo esc_html__( 'Support & Tracker', 'wcmmq' ); ?></h3>
+                    <h3><?php echo esc_html__( 'Support & Tracker', 'woo-min-max-quantity-step-control-single' ); ?></h3>
                 </div>
                 
             </th>
@@ -28,14 +28,14 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_disable_live_support"><?php echo esc_html__('Live Support','wcmmq');?></label>
+                        <label for="_disable_live_support"><?php echo esc_html__('Live Support','woo-min-max-quantity-step-control-single');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch reverse">
                             <input value="1" name="data[disable_live_support]"
-                                <?php echo $live_support; /* finding checked or null */ ?> type="checkbox" id="_disable_live_support">
+                                <?php echo esc_attr( $live_support ); /* finding checked or null */ ?> type="checkbox" id="_disable_live_support">
                             <div class="slider round"><!--ADDED HTML -->
-                                <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                <span class="on"><?php echo esc_html__('ON','woo-min-max-quantity-step-control-single');?></span><span class="off"> <?php echo esc_html__('OFF','woo-min-max-quantity-step-control-single');?></span><!--END-->
                             </div>
                         </label>
                     </div>
@@ -52,7 +52,7 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_disable_live_support"><?php echo esc_html__('Important Link','wcmmq');?></label>
+                        <label for="_disable_live_support"><?php echo esc_html__('Important Link','woo-min-max-quantity-step-control-single');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <div class="wcmmq-important-link-area">
@@ -99,15 +99,15 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_tracker" title="Help Us to Improve plugin based on user data."><?php echo esc_html__('Tracker','wcmmq');?><i class="wcmmq-optional">Optional</i></label>
+                        <label for="_tracker" title="Help Us to Improve plugin based on user data."><?php echo esc_html__('Tracker','woo-min-max-quantity-step-control-single');?><i class="wcmmq-optional">Optional</i></label>
                     </div>
                     <div class="form-field col-lg-6">
                         
                         <label class="switch">
                             <input value="1" name="data[tracker]"
-                                <?php echo $tracker; /* finding checked or null */ ?> type="checkbox" id="_tracker">
+                                <?php echo esc_attr( $tracker ); /* finding checked or null */ ?> type="checkbox" id="_tracker">
                             <div class="slider round"><!--ADDED HTML -->
-                                <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                <span class="on"><?php echo esc_html__('ON','woo-min-max-quantity-step-control-single');?></span><span class="off"> <?php echo esc_html__('OFF','woo-min-max-quantity-step-control-single');?></span><!--END-->
                             </div>
                         </label>
                         <p class="warning-alert">

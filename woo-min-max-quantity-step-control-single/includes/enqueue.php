@@ -45,6 +45,7 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
             'decimal_separator'=> '.',
             'default_decimal_separator'=> wc_get_price_decimal_separator(),
             'decimal_count'=> wc_get_price_decimals(),
+            '_nonce'         => wp_create_nonce( WC_MMQ_PLUGIN_BASE_FOLDER ),
             );
 
         if(wc_get_price_decimal_separator() != '.'){

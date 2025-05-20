@@ -21,18 +21,20 @@ if( ! class_exists( 'CA_Framework\App\Base\Notice_Base' ) ){
             wp_enqueue_style(
                 "ca-notice-css",
                 $this->plugin_path() . "assets/css/ca-notification.css",
-                []
+                [],
+                WC_MMQ_VERSION
             );
             wp_enqueue_script(
                 "ca-notice-update-js",
                 $this->plugin_path() . "assets/js/ajax-update.js",
                 "",
-                '1.0.0',
+                WC_MMQ_VERSION,
                 false
             );
     
             wp_localize_script("ca-notice-update-js", "ajaxobj", [
                 "ajaxurl" => admin_url("admin-ajax.php"),
+                '_nonce'         => wp_create_nonce( WC_MMQ_PLUGIN_BASE_FOLDER ),
             ]);
         }
         
@@ -50,12 +52,19 @@ if( ! class_exists( 'CA_Framework\App\Base\Notice_Base' ) ){
          */
         public function update_notice_status(){
             
-            $fonded_notc_id = isset( $_POST['notice_id'] ) && ! empty( $_POST['notice_id'] ) ? $_POST['notice_id'] : false;
+            $nonce = sanitize_text_field(wp_unslash($_POST['nonce'] ?? ''));
+            if ( empty($nonce) || ! wp_verify_nonce( $nonce, WC_MMQ_PLUGIN_BASE_FOLDER ) ) {
+                echo '';
+                wp_die();
+            }
+
+            $fonded_notc_id = absint( wp_unslash( $_POST['notice_id'] ?? 0 ) );
             if( $fonded_notc_id ){
                 update_option( sanitize_key( $fonded_notc_id ) .'_notice_close_date', current_time( 'timestamp' ) );
                 wp_die();
             }
             wp_die();
+
         }
 
     }

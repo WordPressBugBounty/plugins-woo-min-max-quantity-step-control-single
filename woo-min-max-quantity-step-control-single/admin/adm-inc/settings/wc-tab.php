@@ -31,7 +31,7 @@ class WC_Tab
 
     public function wc_tab_minmax( $tab_array )
     {
-        $tab_array[$this->tab_key] = __( 'Min Max Step', 'wcmmq' );
+        $tab_array[$this->tab_key] = __( 'Min Max Step', 'woo-min-max-quantity-step-control-single' );
         return $tab_array;
     }
 
@@ -66,21 +66,21 @@ class WC_Tab
     {
         $settings = array(
             'section_title' => array(
-                'name'     => __( 'Section Title', 'woocommerce-settings-tab-demo' ),
+                'name'     => __( 'Section Title', 'woo-min-max-quantity-step-control-single' ),
                 'type'     => 'title',
                 'desc'     => '',
                 'id'       => 'wc_settings_tab_demo_section_title'
             ),
             'title' => array(
-                'name' => __( 'Title', 'woocommerce-settings-tab-demo' ),
+                'name' => __( 'Title', 'woo-min-max-quantity-step-control-single' ),
                 'type' => 'text',
-                'desc' => __( 'This is some helper text', 'woocommerce-settings-tab-demo' ),
+                'desc' => __( 'This is some helper text', 'woo-min-max-quantity-step-control-single' ),
                 'id'   => 'wc_settings_tab_demo_title'
             ),
             'description' => array(
-                'name' => __( 'Description', 'woocommerce-settings-tab-demo' ),
+                'name' => __( 'Description', 'woo-min-max-quantity-step-control-single' ),
                 'type' => 'textarea',
-                'desc' => __( 'This is a paragraph describing the setting. Lorem ipsum yadda yadda yadda. Lorem ipsum yadda yadda yadda. Lorem ipsum yadda yadda yadda. Lorem ipsum yadda yadda yadda.', 'woocommerce-settings-tab-demo' ),
+                'desc' => __( 'This is a paragraph describing the setting. Lorem ipsum yadda yadda yadda. Lorem ipsum yadda yadda yadda. Lorem ipsum yadda yadda yadda. Lorem ipsum yadda yadda yadda.', 'woo-min-max-quantity-step-control-single' ),
                 'id'   => 'wc_settings_tab_demo_description'
             ),
             'section_end' => array(

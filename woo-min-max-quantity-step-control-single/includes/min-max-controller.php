@@ -206,7 +206,7 @@ class Min_Max_Controller extends Base
         ?>
         <div 
         class="wcmmq-available-variaions"
-        data-product_variations="<?php echo $variations_attr; ?>"
+        data-product_variations="<?php echo esc_attr( $variations_attr ); ?>"
         style="display:none;opacity:hidden;visibility:hidden;">
         </div>
         <?php
@@ -291,8 +291,8 @@ style="display:none !important;"></div>
 (function($) {
     'use strict';
     $(document).ready(function($) {
-        var product_id = "<?php echo $product->get_id(); ?>";
-        var variation_data = '<?php echo $data; ?>';
+        var product_id = "<?php echo esc_js( $this->product_id  ); ?>";
+        var variation_data = '<?php echo esc_js( $data ); ?>';
         variation_data = JSON.parse(variation_data);
         var form_selector = 'form.variations_form.cart[data-product_id="' + product_id + '"]';
 
@@ -467,7 +467,7 @@ style="display:none !important;"></div>
             $this->backorders = $this->variation_product->get_backorders();
         }
         $this->backorders_status = $this->backorders !== 'no' ? true : false;
-        // var_dump($this->variation_product);
+
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
         $this->max_value = $this->getMeta( $this->max_quantity );
@@ -537,8 +537,6 @@ style="display:none !important;"></div>
         $this->min_value = $this->options[$this->min_quantity] ?? 1;
         $this->max_value = $this->options[$this->max_quantity] ?? -1;
         $this->step_value = $this->options[$this->product_step] ?? 1;
-        
-        // var_dump($this->options);
     }
 
 
@@ -1048,7 +1046,7 @@ style="display:none !important;"></div>
      */
     public function messageReplace( $message )
     {
-        $message = __( $message, 'wcmmq' );
+        $message = __( $message, 'woo-min-max-quantity-step-control-single' );
         $defaults = array(
             'min_quantity' => false,
             'max_quantity' => false,

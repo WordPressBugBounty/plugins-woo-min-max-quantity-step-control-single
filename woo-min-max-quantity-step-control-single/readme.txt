@@ -1,11 +1,11 @@
-=== Min Max Control - Min Max Quantity & Step Control for WooCommerce===
+=== Min Max Control - Min Max Quantity & Step Control for WooCommerce ===
 Contributors: codersaiful,codeastrology,mdibrahimk48,unikforce,fazlebari,rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purchase, limit quantity, customize woocommerce quantity
 Requires at least: 4.0.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 6.7
+Stable tag: 6.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -256,6 +256,12 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 6.8 =
+* Tested on Latest WooCommerce version 9.8.5
+* Fixed: Code Optimized
+* UI has been changed a little. 
+* Bug fixed
 
 = 6.7 =
 * Fixed: `TypeError: method_exists()` - error has been fixed. 

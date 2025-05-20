@@ -74,10 +74,10 @@ if( ! class_exists( 'Plugin_Required' ) ){
             
             if( time() > $last_date_timestamp ) return;
 
-            $temp_numb = rand(4,5);
+            $temp_numb = wp_rand(4,5);
             //eta sudhu matro amader selected plugin er kkhetre always ba all time show korbe add
             //Only when in product table page, So it will show always
-            $s_id = $_SERVER['REQUEST_URI'] ?? '';
+            $s_id = sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) );
             if( strpos( $s_id, 'wcmmq') !== false ){
                 if( self::$PRO_DEV_VERSION ){
                     self::OtherOffer($temp_numb, $s_id);
@@ -101,7 +101,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
              * taholei offer showing off hoye jabe.
              */
 
-            $temp_numb = rand(1,14);
+            $temp_numb = wp_rand(1,14);
             if( self::$PRO_DEV_VERSION ){
                 self::OtherOffer( $temp_numb);
                 return;
@@ -121,7 +121,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
         {
 
             $extra_for_id = $extra_for_id ? $extra_for_id : '';
-            $this_rand = rand(1,9);
+            $this_rand = wp_rand(1,9);
             if( $this_rand <= 3 ){
                 self::Notice( $probability);
             }else{
@@ -265,7 +265,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
             if(empty($fullArgs)) return;
 
             $count = count($fullArgs);
-            $arr_index = rand(0, $count - 1);
+            $arr_index = wp_rand(0, $count - 1);
             
             $rand_args = $fullArgs[$arr_index];
             self::GetCustomOffer( $rand_args, $arr_index, $extra_for_id );

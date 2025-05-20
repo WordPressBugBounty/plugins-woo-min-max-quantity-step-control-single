@@ -11,20 +11,19 @@ class Recommeded
     public static function check()
     {
 
-        $this_plugin = __( 'Min Max Control', 'wcmmq' );
+        $this_plugin = __( 'Min Max Control', 'woo-min-max-quantity-step-control-single' );
         $mmp_req_slug = 'product-sync-master-sheet/product-sync-master-sheet.php';
         $mmp_tar_slug = WC_MMQ_PLUGIN_BASE_FILE;
         $req_sync = new Require_Control($mmp_req_slug,$mmp_tar_slug);
-        $req_sync->set_args( ['Name' => __( 'Product Stock Sync with Google Sheet for WooCommerce', 'wcmmq' ) ] )
+        $req_sync->set_args( ['Name' => __( 'Product Stock Sync with Google Sheet for WooCommerce', 'woo-min-max-quantity-step-control-single' ) ] )
         ->set_download_link('https://wordpress.org/plugins/product-sync-master-sheet/')
         ->set_this_download_link('https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/');
-        $mmp_message = __('Easily manage and synchronize your WooCommerce product stock with the power of Google Sheets using our plugin – Product Stock Sync with Google Sheet for WooCommerce. This intuitive solution empowers you to streamline your inventory management effortlessly.','wcmmq');
+        $mmp_message = __('Easily manage and synchronize your WooCommerce product stock with the power of Google Sheets using our plugin – Product Stock Sync with Google Sheet for WooCommerce. This intuitive solution empowers you to streamline your inventory management effortlessly.','woo-min-max-quantity-step-control-single');
         $wpt_link = "";
         $mmp_message = sprintf($mmp_message, $wpt_link);
         $req_sync->set_message($mmp_message);
         $req_sync->get_full_this_plugin_name($this_plugin);
-        // var_dump(method_exists($req_mmp, 'set_location'),$req_mmp);
-        // ->set_required();
+
         if( method_exists($req_sync, 'set_location') ){
             $req_sync->set_location('wcmmq_plugin_recommend_top'); //wpt_premium_image_bottom
             $req_sync->run();
@@ -34,7 +33,7 @@ class Recommeded
             $req_sync->set_location('wcmmq_plugin_recommend_here'); //wpt_premium_image_bottom
             $req_sync->run();
         }
-        $this_plugin = __( 'Min Max Control', 'wpt_pro' );
+        $this_plugin = __( 'Min Max Control', 'woo-min-max-quantity-step-control-single' );
         
         $mmp_req_slug = 'woo-product-table/woo-product-table.php';
         $mmp_tar_slug = WC_MMQ_PLUGIN_BASE_FILE;
@@ -42,13 +41,13 @@ class Recommeded
         $req_mmp->set_args( ['Name' => 'Product Table for WooCoomerce by CodeAstrology'] )
         ->set_download_link('https://wordpress.org/plugins/woo-product-table/')
         ->set_this_download_link('https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/');
-        $mmp_message = __('%s Product Table plugin helps you to display your WooCommerce products in a searchable table layout with filters. Add a table on any page or post via a shortcode. You can create tables as many as you want.','wcmmq');
+        /* translators: 1: Plugin name  */
+        $mmp_message = __('%s Product Table plugin helps you to display your WooCommerce products in a searchable table layout with filters. Add a table on any page or post via a shortcode. You can create tables as many as you want.','woo-min-max-quantity-step-control-single');
         $wpt_link = "<a href='https://wooproducttable.com/' target='_blank'>(Woo Product Table)</a>";
         $mmp_message = sprintf($mmp_message, $wpt_link);
         $req_mmp->set_message($mmp_message);
         $req_mmp->get_full_this_plugin_name($this_plugin);
-        // var_dump(method_exists($req_mmp, 'set_location'),$req_mmp);
-        // ->set_required();
+
         if( method_exists($req_mmp, 'set_location') ){
             $req_mmp->set_location('wcmmq_plugin_recommend_top'); //wpt_premium_image_bottom
             $req_mmp->run();
@@ -64,7 +63,7 @@ class Recommeded
         $req_pmb->set_args( ['Name' => 'Quantity Plus Minus Button for WooCommerce'] )
         ->set_download_link('https://wordpress.org/plugins/wc-quantity-plus-minus-button/')
         ->set_this_download_link('https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/');
-        $pmb_message = __('If you want to set plus minus button for your Quantity Box, you can Install this plugin. If already by your theme, ignore it.','wpt_pro');
+        $pmb_message = __('If you want to set plus minus button for your Quantity Box, you can Install this plugin. If already by your theme, ignore it.','woo-min-max-quantity-step-control-single');
         $req_pmb->set_message($pmb_message);
         $req_pmb->get_full_this_plugin_name($this_plugin);
         // ->set_required();
@@ -81,7 +80,7 @@ class Recommeded
         $req_pmb->set_args( ['Name' => 'UltraAddons - Elementor Addons'] )
         ->set_download_link('https://wordpress.org/plugins/ultraaddons-elementor-lite/')
         ->set_this_download_link('https://wordpress.org/plugins/woo-product-table/');
-        $pmb_message = __('There are many WooCommerce Widget available at UltraAddons. You can Try it. Just Recommended','wpt_pro');
+        $pmb_message = __('There are many WooCommerce Widget available at UltraAddons. You can Try it. Just Recommended','woo-min-max-quantity-step-control-single');
         $req_pmb->set_message($pmb_message);
         $req_pmb->get_full_this_plugin_name($this_plugin);
 

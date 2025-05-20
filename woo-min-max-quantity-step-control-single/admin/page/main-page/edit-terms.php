@@ -1,19 +1,6 @@
 
 <div class="wcmmq-terms-wrapper">
     <table class="wcmmq-table edit-terms">
-        <thead>
-            <tr>
-                <th class="wcmmq-inside">
-                    <div class="wcmmq-table-header-inside">
-                        <h3><?php echo esc_html__('Edit Terms','wcmmq');?></h3>
-                    </div>
-                    
-                </th>
-                <th>
-                    <div class="wcmmq-table-header-right-side"></div>
-                </th>
-            </tr>
-        </thead>
         <tbody>
         <?php
 
@@ -23,7 +10,7 @@
         $support_all_terms = apply_filters( 'wcmmq_display_all_terms', false, $saved_data );
         if( $support_all_terms ){
             $term_lists = get_object_taxonomies('product','objects');
-            //var_dump($term_lists);
+
             $ourTermList = false;
             foreach( $term_lists as $trm_key => $trm_object ){
                 if( $trm_object->labels->singular_name == 'Tag' && $trm_key !== 'product_tag' ){
@@ -36,18 +23,13 @@
 
         $term_lists = apply_filters( 'wcmmq_terms_list', $ourTermList, $saved_data );
 
-        $args = array(
-            'hide_empty'    => false, 
-            'orderby'       => 'count',
-            'order'         => 'DESC',
-        );
         $_term_lists = isset( $saved_data['terms'] ) && is_array( $saved_data['terms'] ) ? array_merge( $saved_data['terms'], $term_lists ) : $term_lists;
 
         foreach( $_term_lists as $key => $each ){
             $term_key = $key;
             $term_name = !empty( $term_lists[$key] ) ? $term_lists[$key] : $key;
 
-            $term_obj = get_terms( $term_key, $args );
+            $term_obj = get_terms( $term_key );
 
             $selected_term_ids = isset( $saved_data['terms'][$term_key] ) && !empty( $saved_data['terms'][$term_key] ) ? $saved_data['terms'][$term_key] : false;
             $selected_term_ids = wcmmq_term_ids_wpml( $selected_term_ids, $key );
@@ -92,15 +74,15 @@ jQuery(document).ready(function($){
                 <div class="product_cat">';
         html += '<table id="term_table_' + id + '">';
         html += tr + th; 
-        html += '<label><?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>';
+        html += '<label><?php echo esc_html__( 'Minimum Quantity', 'woo-min-max-quantity-step-control-single' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_min]" value=""  type="number" step=any>';
         html += tdC + trC + tr + th; 
-        html += '<label><?php echo esc_html__( 'Maximum Quantity', 'wcmmq' ); ?></label>';
+        html += '<label><?php echo esc_html__( 'Maximum Quantity', 'woo-min-max-quantity-step-control-single' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_max]" value=""  type="number" step=any>';
         html += tdC + trC + tr + th;
-        html += '<label><?php echo esc_html__( 'Step Quantity', 'wcmmq' ); ?></label>';
+        html += '<label><?php echo esc_html__( 'Step Quantity', 'woo-min-max-quantity-step-control-single' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_step]" value=""  type="number" step=any>';
         html += tdC + trC;
@@ -110,7 +92,7 @@ jQuery(document).ready(function($){
         if( $default_qty ){
         ?> 
         html += tr + th;
-        html += '<label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>';
+        html += '<label><?php echo esc_html__( 'Default Quantity', 'woo-min-max-quantity-step-control-single' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_default]" value=""  type="number" step=any>';
         html += tdC + trC;

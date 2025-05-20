@@ -205,7 +205,7 @@
                         <div class="tuts-box-wrapper">
                             <div class="col-md-4">
                                 <div class="categories_guide_item wow fadeInUp">
-                                <img width="34" height="32" src="https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1.png" class="attachment-full size-full wp-post-image" alt="" loading="lazy" srcset="https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1.png 34w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-16x16.png 16w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-18x18.png 18w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-20x20.png 20w" sizes="(max-width: 34px) 100vw, 34px">
+                                <img width="34" height="32" src="#" class="attachment-full size-full wp-post-image" alt="" >
                                     <div class="doc_tag_title">
                                         <h4>Low Stock Email Notify</h4>
                                     </div>
@@ -223,7 +223,7 @@
 
                             <div class="col-md-4">
                                 <div class="categories_guide_item wow fadeInUp">
-                                    <img width="34" height="32" src="https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1.png" class="attachment-full size-full wp-post-image" alt="" loading="lazy" srcset="https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1.png 34w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-16x16.png 16w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-18x18.png 18w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-20x20.png 20w" sizes="(max-width: 34px) 100vw, 34px">
+                                    <img width="34" height="32" src="#" class="attachment-full size-full wp-post-image" alt="" loading="lazy" >
                                     <div class="doc_tag_title">
                                         <h4>Comming Soon <i class="wcmmq_icon-spin6 animate-spin"></i></h4>
                                     </div>

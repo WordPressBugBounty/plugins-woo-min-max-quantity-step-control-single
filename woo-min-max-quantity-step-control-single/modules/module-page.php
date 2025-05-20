@@ -1,20 +1,27 @@
 <?php 
 
-/**
- * ei file ta ekhon page load class er madhome include kora hoyeche.
- * so here main class is:
- * WC_MMQ\Page_Loader class
- */
 
-if( isset( $_POST['ca-module-submit'] ) && filter_input_array(INPUT_POST) ){
-    $data = filter_input_array( INPUT_POST );
-    $values = $data['data'] ?? array();
-    $this->module_controller->update($values);
+$nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ?? '' ) );
+if ( ! empty($nonce) && wp_verify_nonce( $nonce, WC_MMQ_PLUGIN_BASE_FOLDER ) ) {
+    /**
+     * ei file ta ekhon page load class er madhome include kora hoyeche.
+     * so here main class is:
+     * WC_MMQ\Page_Loader class
+     */
+
+    if( isset( $_POST['ca-module-submit'] ) && filter_input_array(INPUT_POST) ){
+        $data = filter_input_array( INPUT_POST );
+        $values = $data['data'] ?? array();
+        $this->module_controller->update($values);
+
+    }        
 
 }
+
+
 $module_datas = $this->module_controller->modules;
 $modules_list = $this->module_controller->get_module_list();
-// var_dump($modules_list);
+
 ?>
 <div class="wrap wcmmq_wrap wcmmq-content">
     <h1 class="wp-heading "></h1>
@@ -23,21 +30,19 @@ $modules_list = $this->module_controller->get_module_list();
 
 
     <div class="wcmmq-section-panel no-background">
-        <a class="wcmmq-btn wcmmq-has-icon" href="https://codeastrology.com/my-support" target="_blank"><span><i class="wcmmq_icon-ok"></i></span>Support</a>
+        <a class="wcmmq-btn wcmmq-btn-small wcmmq-has-icon" href="https://codeastrology.com/my-support" target="_blank"><span><i class="wcmmq_icon-user"></i></span>We are ready to help</a>
         
-        <!-- <a class="wcmmq-btn reset wcmmq-has-icon" href="https://codeastrology.com/my-support" target="_blank"><span><i class="wcmmq_icon-ok"></i></span>Link</a>
-        <a class="wcmmq-btn round wcmmq-has-icon" href="#"><span><i class="wcmmq_icon-ok"></i></span>Link</a> -->
-        <a class="wcmmq-btn reset round wcmmq-has-icon" href="https://profiles.wordpress.org/codersaiful/#content-plugins" target="_blank"><span><i class="wcmmq_icon-ok"></i></span>Plugins</a>
+        <a class="wcmmq-btn  wcmmq-btn-small reset round wcmmq-has-icon" href="https://profiles.wordpress.org/codersaiful/#content-plugins" target="_blank"><span><i class="wcmmq_icon-plug"></i></span>Our Free plugins</a>
     </div>
 <form action="" method="POST" id="wcmmq-main-configuration-form">
-
+    <?php wp_nonce_field( WC_MMQ_PLUGIN_BASE_FOLDER, 'nonce' ) ?>
     <div class="wcmmq-section-panel module-page-wrapper" id="module-page-wrapper">
         <table class="wcmmq-table universal-setting">
             <thead>
                 <tr>
                     <th class="wcmmq-inside">
                         <div class="wcmmq-table-header-inside">
-                            <h3><?php echo esc_html__( 'Module Switcher', 'wcmmq' ); ?></h3>
+                            <h3><?php echo esc_html__( 'Module Switcher', 'woo-min-max-quantity-step-control-single' ); ?></h3>
                         </div>
                         
                     </th>
@@ -73,7 +78,7 @@ $modules_list = $this->module_controller->get_module_list();
                                     <?php echo esc_attr( $checkbox ); ?>
                                     type="checkbox" id="<?php echo esc_attr( $key ); ?>">
                                     <div class="slider round"><!--ADDED HTML -->
-                                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                        <span class="on"><?php echo esc_html__('ON','woo-min-max-quantity-step-control-single');?></span><span class="off"> <?php echo esc_html__('OFF','woo-min-max-quantity-step-control-single');?></span><!--END-->
                                     </div>
                                 </label>
                             </div>
@@ -99,7 +104,7 @@ $modules_list = $this->module_controller->get_module_list();
             class="wcmmq-btn wcmmq-has-icon wcmmq-submit-button configure_submit">
             <span><i class="wcmmq_icon-floppy"></i></span>
             <strong class="form-submit-text">
-            <?php echo esc_html__('Save Change','wcmmq');?>
+            <?php echo esc_html__('Save Change','woo-min-max-quantity-step-control-single');?>
             </strong>
         </button>
         
@@ -114,7 +119,7 @@ $modules_list = $this->module_controller->get_module_list();
             <tr>
                 <th class="wcmmq-inside">
                     <div class="wcmmq-table-header-inside">
-                        <h3><?php echo esc_html__('Recommendation Area', 'wpt'); ?> <small class="wcmmq-small-title">To increase Sale</small></h3>
+                        <h3><?php echo esc_html__('Recommendation Area', 'woo-min-max-quantity-step-control-single'); ?> <small class="wcmmq-small-title">To increase Sale</small></h3>
                     </div>
 
                 </th>

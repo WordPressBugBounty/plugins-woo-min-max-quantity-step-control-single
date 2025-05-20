@@ -25,10 +25,12 @@ class Page_Loader extends Base
             $this->pro_version = WC_MMQ_PRO_VERSION;
             $this->license = property_exists('\WC_MMQ_PRO','direct') ? \WC_MMQ_PRO::$direct : null;
             $this->handle_license_n_update();
+        }else{
+            add_action( 'admin_notices', [$this, 'discount_notice'] );
         }
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';
-        $this->topbar_sub_title = __("Manage and Settings", "wcmmq");
+        $this->topbar_sub_title = __("Manage and Settings", 'woo-min-max-quantity-step-control-single');
 
         $this->module_controller = new Module_Controller();
     }
@@ -51,11 +53,9 @@ class Page_Loader extends Base
     public function module_page_html()
     {
         
-        $this->topbar_sub_title = __( 'Manage Module','wcmmq' );
+        $this->topbar_sub_title = __( 'Manage Module','woo-min-max-quantity-step-control-single' );
         include $this->topbar_file;
-        if( ! $this->is_pro ){
-            include $this->page_folder_dir . 'main-page/premium-link-header.php';
-        }
+        
         include $this->module_controller->dir . '/module-page.php';
     }
     
@@ -71,7 +71,7 @@ class Page_Loader extends Base
     public function product_quick_edit()
     {
         add_filter( 'pssg_products_columns', [$this,'handle_columns'] );
-        $this->topbar_sub_title = __( 'Min Max Quick Edit','wcmmq' );
+        $this->topbar_sub_title = __( 'Min Max Quick Edit','woo-min-max-quantity-step-control-single' );
         include $this->topbar_file;
         include $this->page_folder_dir . '/product-quick-edit.php';
     }
@@ -93,44 +93,11 @@ class Page_Loader extends Base
         return $new_columns;
     }
 
-    public function browse_plugins_html()
-    {
-        add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
-        $this->topbar_sub_title = __( 'Browse our Plugins','wcmmq' );
-        include $this->topbar_file;
-        if( ! $this->is_pro ){
-            include $this->page_folder_dir . 'main-page/premium-link-header.php';
-        }
-        include $this->page_folder_dir . 'browse-plugins.php';
-    }
-
-    public function addons_list_html()
-    {
-        add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
-        $this->topbar_sub_title = __( 'Addons','wcmmq' );
-        include $this->topbar_file;
-        if( ! $this->is_pro ){
-            include $this->page_folder_dir . 'main-page/premium-link-header.php';
-        }
-        include $this->page_folder_dir . 'addons-list.php';
-    }
-    
-
     public function admin_menu()
     {
         $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce' );
     
-        //This bellow line will removed //If we enable bellow line, we have a include set_menu_and_fac.php file
-        // add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', $capability, 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
-        
-        //from new class
-        // add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', $capability, 'wcmmq_min_max_step', [$this, 'main_page_html'] );
-        
-
-        //THAT TO BE ENABLE AT THE END
-        add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', $capability, 'wcmmq_min_max_step', [$this,'redirect_to_new_page'] );
-        
-        $proString = $this->is_pro ? esc_html__( ' Pro', 'wcmmq' ) : '';
+        $proString = $this->is_pro ? esc_html__( ' Pro', 'woo-min-max-quantity-step-control-single' ) : '';
         
         
         $min_max_img = $this->base_url . 'assets/images/min-max.png';
@@ -145,24 +112,18 @@ class Page_Loader extends Base
         //Module page adding
         add_submenu_page( $this->main_slug, $this->module_controller->menu_title . $proString, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
-        add_submenu_page( $this->main_slug, esc_html__( 'Min Max Bulk Edit', 'wcmmq' ) . $proString,  __( 'Min Max Bulk Edit', 'wcmmq' ), $capability, 'wcmmq-product-quick-edit', [$this, 'product_quick_edit'] );
-        add_submenu_page( $this->main_slug, esc_html__( 'Pro Demo', 'wcmmq' ),  esc_html__( 'Pro Demo', 'wcmmq' ), 'read', 'https://wpprincipal.xyz/?site=wcmmq&utm=PluginDashboard' );
-
+        if (class_exists('\PSSG_Sync_Sheet\App\Handle\Quick_Table')) {
+            add_submenu_page( $this->main_slug, esc_html__( 'Min Max Bulk Edit', 'woo-min-max-quantity-step-control-single' ) . $proString,  __( 'Min Max Bulk Edit', 'woo-min-max-quantity-step-control-single' ), $capability, 'wcmmq-product-quick-edit', [$this, 'product_quick_edit'] );
+        }
         
-        add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ) . $proString,  __( 'Browse Plugins', 'wcmmq' ), 'read', 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
-        add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ) . $proString,  __( 'Addons', 'wcmmq' ), 'read', 'wcmmq-addons-list', [$this, 'addons_list_html'] );
-
-        add_submenu_page($this->main_slug, 'Documentation' . $proString, 'Documentation', 'read','https://codeastrology.com/min-max-quantity/documentation/');
-        if($this->is_pro){
-            add_submenu_page($this->main_slug, 'Support' . $proString, 'Support', 'read','https://codeastrology.com/my-support');
-        }else{
-            add_submenu_page($this->main_slug, 'Support & Buy', 'Support & Buy', 'read','https://codeastrology.com/min-max-quantity/pricing/');
+        if( ! $this->is_pro){
+            add_submenu_page($this->main_slug, 'Get Premium', 'Get Premium', 'read','https://codeastrology.com/min-max-quantity/pricing/');
         }
         
 
         //License Menu if pro version is getter or equal V2.0.8.4
         if( is_object( $this->license ) && version_compare($this->pro_version, '2.0.8.4', '>=')){
-            add_submenu_page( $this->main_slug, __('Min Max Control License', 'wcmmq_pro'), __( 'License', 'wcmmq_pro' ), $capability, 'wcmmq-license', [$this->license, 'license_page'] );
+            add_submenu_page( $this->main_slug, __('Min Max Control License', 'woo-min-max-quantity-step-control-single'), __( 'License', 'woo-min-max-quantity-step-control-single' ), $capability, 'wcmmq-license', [$this->license, 'license_page'] );
         }
     }
 
@@ -177,10 +138,10 @@ class Page_Loader extends Base
         $default_lang = apply_filters('wpml_default_language', NULL);
         if ( empty( $default_lang ) ) return;
         // Get the current URL
-        $current_url = $_SERVER['REQUEST_URI'];
+        $current_url = sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) );
         
         // Parse the URL to get its components
-        $parsed_url = parse_url($current_url);
+        $parsed_url = wp_parse_url($current_url);
         
         // Parse the query string into an associative array
         $query_params = [];
@@ -208,47 +169,48 @@ class Page_Loader extends Base
     public function admin_enqueue_scripts()
     {
         global $current_screen;
-        
-        /**
-         * Select2 CSS file including. 
-         * 
-         * @since 1.0.3
-         */    
-        wp_enqueue_style( 'select2-css', $this->base_url . 'assets/css/select2.min.css' );
-
-        /**
-         * Select2 jQuery Plugin file including. 
-         * Here added min version. But also available regular version in same directory
-         * 
-         * @since 1.9
-         */
-        wp_enqueue_script( 'select2', $this->base_url . 'assets/js/select2.full.min.js', array( 'jquery' ), '4.0.5', true );
-
-        
-        wp_register_script( $this->plugin_prefix . '-admin-script', $this->base_url . 'assets/js/admin.js', array( 'jquery','select2' ), $this->dev_version, true );
-        wp_enqueue_script( $this->plugin_prefix . '-admin-script' );
-
-        
-        $ajax_url = admin_url( 'admin-ajax.php' );
-        $WCMMQ_ADMIN_DATA = array( 
-            'ajax_url'       => $ajax_url,
-            'site_url'       => site_url(),
-            'cart_url'       => wc_get_cart_url(),
-            'priceFormat'    => get_woocommerce_price_format(),
-            'decimal_separator'=> '.',
-            'default_decimal_separator'=> wc_get_price_decimal_separator(),
-            'decimal_count'=> wc_get_price_decimals(),
-            );
-        wp_localize_script( $this->plugin_prefix . '-admin-script', 'WCMMQ_ADMIN_DATA', $WCMMQ_ADMIN_DATA );
-        
-        wp_register_style( 'ultraaddons-common-css', $this->base_url . 'assets/css/admin-common.css', false, $this->dev_version );
-        wp_enqueue_style( 'ultraaddons-common-css' );
-
-        wp_register_style( $this->plugin_prefix . 'wcmmq_css', $this->base_url . 'assets/css/admin.css', false, $this->dev_version );
-        wp_enqueue_style( $this->plugin_prefix . 'wcmmq_css' );
-
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
         if( strpos( $s_id, $this->plugin_prefix ) !== false ){
+            /**
+             * Select2 CSS file including. 
+             * 
+             * @since 1.0.3
+             */    
+            wp_enqueue_style( 'select2-css', $this->base_url . 'assets/css/select2.min.css', [], '4.0.5' );
+
+            /**
+             * Select2 jQuery Plugin file including. 
+             * Here added min version. But also available regular version in same directory
+             * 
+             * @since 1.9
+             */
+            wp_enqueue_script( 'select2', $this->base_url . 'assets/js/select2.full.min.js', array( 'jquery' ), '4.0.5', true );
+
+            
+            wp_register_script( $this->plugin_prefix . '-admin-script', $this->base_url . 'assets/js/admin.js', array( 'jquery','select2' ), $this->dev_version, true );
+            wp_enqueue_script( $this->plugin_prefix . '-admin-script' );
+
+            
+            $ajax_url = admin_url( 'admin-ajax.php' );
+            $WCMMQ_ADMIN_DATA = array( 
+                'ajax_url'       => $ajax_url,
+                'site_url'       => site_url(),
+                'cart_url'       => wc_get_cart_url(),
+                'priceFormat'    => get_woocommerce_price_format(),
+                'decimal_separator'=> '.',
+                'default_decimal_separator'=> wc_get_price_decimal_separator(),
+                'decimal_count'=> wc_get_price_decimals(),
+                '_nonce'         => wp_create_nonce( WC_MMQ_PLUGIN_BASE_FOLDER ),
+                );
+            wp_localize_script( $this->plugin_prefix . '-admin-script', 'WCMMQ_ADMIN_DATA', $WCMMQ_ADMIN_DATA );
+            
+            wp_register_style( 'ultraaddons-common-css', $this->base_url . 'assets/css/admin-common.css', false, $this->dev_version );
+            wp_enqueue_style( 'ultraaddons-common-css' );
+
+            wp_register_style( $this->plugin_prefix . 'wcmmq_css', $this->base_url . 'assets/css/admin.css', false, $this->dev_version );
+            wp_enqueue_style( $this->plugin_prefix . 'wcmmq_css' );
+
+        
             add_filter('admin_footer_text',[$this, 'admin_footer_text']);
             
             wp_register_style( $this->plugin_prefix . '-icon-font', $this->base_url . 'assets/fontello/css/wcmmq-icon.css', false, $this->dev_version );
@@ -265,6 +227,8 @@ class Page_Loader extends Base
             wp_enqueue_style( $this->plugin_prefix . '-new-admin' );
 
         }
+        wp_register_style( $this->plugin_prefix . '-notice', $this->base_url . 'assets/css/notice.css', false, $this->dev_version );
+        wp_enqueue_style( $this->plugin_prefix . '-notice' );
 
         
     }
@@ -284,86 +248,16 @@ class Page_Loader extends Base
     public function admin_footer_text($text)
     {
         $rev_link = 'https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/reviews/#new-post';
+        
         $text = sprintf(
-			__( 'Thank you for using Min Max Control. <a href="%s" target="_blank">%sPlease review us</a>.' ),
+            /* translators: 1: link to review, 2: Showing review stars */
+			__( 'Thank you for using Min Max Control. <a href="%1$s" target="_blank">%2$sPlease review us</a>.', 'woo-min-max-quantity-step-control-single' ),
 			$rev_link,
             '<i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i>'
 		);
-        return '<span id="footer-thankyou" class="wcmmq-footer-thankyou">' . $text . '</span>';
+        return '<span id="footer-thankyou" class="wcmmq-footer-thankyou">' . wp_kses_post( $text ) . '</span>';
     }
-    public function plugins_api_result( $res, $action, $args )
-    {
-        if ( $action !== 'query_plugins' ) {
-            return $res;
-        }
-        
-        if( isset( $_GET['page'] ) && $_GET['page'] == 'wcmmq-browse-plugins' ){
-            //Will Continue to bottom actually
-        }else{
-            return $res;
-        }
-        $browse_plugins = get_transient( 'codersaiful_browse_plugins' );
-        
-        
-        if( $browse_plugins ){
-            return $browse_plugins;//As $res
-        }
-        
-        
-        
-        $wp_version = get_bloginfo( 'version', 'display' );
-        $action = 'query_plugins';
-        $args = array(
-            'page' => 1,
-            'wp_version' => $wp_version
-        );
-        $args['author']          = 'codersaiful';
-        $url = 'http://api.wordpress.org/plugins/info/1.2/';
-        $url = add_query_arg(
-                array(
-                        'action'  => $action,
-                        'request' => $args,
-                ),
-                $url
-        );
 
-        $http_url = $url;
-        $ssl      = wp_http_supports( array( 'ssl' ) );
-        if ( $ssl ) {
-                $url = set_url_scheme( $url, 'https' );
-        }
-
-        $http_args = array(
-                'timeout'    => 15,
-                'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url( '/' ),
-        );
-        $request   = wp_remote_get( $url, $http_args );
-
-        if ( $ssl && is_wp_error( $request ) ) {
-                if ( ! wp_is_json_request() ) {
-                        trigger_error(
-                                sprintf(
-                                        /* translators: %s: Support forums URL. */
-                                        __( 'An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
-                                        __( 'https://wordpress.org/support/forums/' )
-                                ) . ' ' . __( '(WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)' ),
-                                headers_sent() || WP_DEBUG ? E_USER_WARNING : E_USER_NOTICE
-                        );
-                }
-
-                $request = wp_remote_get( $http_url, $http_args );
-        }
-
-
-        $res = json_decode( wp_remote_retrieve_body( $request ), true );
-        if ( is_array( $res ) ) {
-                // Object casting is required in order to match the info/1.0 format.
-                $res = (object) $res;
-                set_transient( 'codersaiful_browse_plugins' , $res, 32000);
-        }
-        
-        return $res;
-    }
 
     /**
      * If will work, when only found pro version
@@ -411,7 +305,7 @@ class Page_Loader extends Base
         if($exp_timestamp < time()){
 
             $this->exp_timestamp = $exp_timestamp;
-            // var_dump($this->license_data);
+            
             if($this->license_status == 'valid'){
                 $this->invalid_status = 'invalid';
                 $this->license_data->license = $this->invalid_status;
@@ -431,10 +325,10 @@ class Page_Loader extends Base
 
         if(empty($this->item_id)) return;
         $wpt_logo = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
-        $expired_date = date( 'd M, Y', $this->exp_timestamp );
-        $link_label = __( 'Renew License', 'wpt_pro' );
+        $expired_date = gmdate( 'd M, Y', $this->exp_timestamp );
+        $link_label = __( 'Renew License', 'woo-min-max-quantity-step-control-single' );
         $link = "https://codeastrology.com/checkout/?edd_license_key={$this->license_key}&download_id={$this->item_id}";
-		$message = esc_html__( ' Renew it to get latest update.', 'wpt_pro' ) . '</strong>';
+		$message = esc_html__( ' Renew it to get latest update.', 'woo-min-max-quantity-step-control-single' );
         ob_start();
         ?>
         <div class="error wcmmq-renew-license-notice">
@@ -446,6 +340,50 @@ class Page_Loader extends Base
         </div>
         <?php
         $full_message = ob_get_clean();
-        printf( $full_message, $message, $link, $link_label );
+        printf( wp_kses_post( $full_message ), esc_html( $message ), esc_url( $link ), esc_html( $link_label ) );
+    }
+
+    /**
+     * Displays an admin notice offering a discount for Woo Product Table Pro.
+     *
+     * The notice includes a 15% discount offer with a link to the pricing page and 
+     * another link to free plugins. The notice is shown randomly with a 5% chance 
+     * on non-Woo Product Table admin pages.
+     *
+     * @global object $current_screen The current screen object in the WordPress admin.
+     *
+     * @return void
+     */
+
+    public function discount_notice()
+    {
+        
+
+        $logo = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
+        $link_label = __( 'Claim Your Coupon', 'woo-product-table' );
+        $link = "https://codeastrology.com/min-max-quantity/pricing/";
+        $plug_name = __( 'Min Max Control Pro', 'woo-min-max-quantity-step-control-single' );
+
+        global $current_screen;
+        $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
+        $wpt = strpos( $s_id, $this->plugin_prefix ) !== false;
+        $is_dissmissable_class = ! $wpt ? 'is-dismissible' : '';
+        $rand = wp_rand( 1, 15 );
+
+        if( ! $wpt && $rand != 1 ) return;
+        ob_start();
+        
+        ?>
+        <div class="notice <?php echo esc_attr( $is_dissmissable_class ); ?> notice-warning updated wcmmq-discount-notice">
+            <div class="wpt-license-notice-inside">
+                <img src="<?php echo esc_url( $logo ); ?>" class="wpt-license-brand-logo">
+                🎉 <span style="color: #d00;font-weight:bold;">Unlock 20% OFF</span> <strong><?php echo esc_html( $plug_name ); ?></strong> - Use your coupon at checkout (Limited time)
+                <a class="wpt-get-discount" href="<?php echo esc_url( $link ); ?>" target="_blank"><?php echo esc_html( $link_label ); ?></a>
+                <a class="wpt-get-free" href="https://profiles.wordpress.org/codersaiful/#content-plugins" target="_blank">Free plugins for you</a>
+            </div>
+        </div>
+        <?php
+        $full_message = ob_get_clean();
+        echo wp_kses_post( $full_message );  
     }
 }
