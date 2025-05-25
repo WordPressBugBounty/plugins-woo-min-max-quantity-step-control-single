@@ -5,7 +5,7 @@ Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purcha
 Requires at least: 4.0.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 6.8
+Stable tag: 6.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -256,6 +256,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 6.9 =
+* Setting page link fix from Plugins page.
+* Bug Fixed.
 
 = 6.8 =
 * Tested on Latest WooCommerce version 9.8.5
