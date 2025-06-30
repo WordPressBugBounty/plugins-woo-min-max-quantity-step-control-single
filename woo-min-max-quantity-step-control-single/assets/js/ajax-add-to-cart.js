@@ -8,7 +8,7 @@
 (function ($) {
     $(document).ready(function () {
         
-        $(document.body).on('click', '.single_add_to_cart_button', function (e) {
+        $(document.body).on('click', 'body.single .single_add_to_cart_button', function (e) {
 
             // var simple_product = $(this).closest('div.product-type-simple');
             

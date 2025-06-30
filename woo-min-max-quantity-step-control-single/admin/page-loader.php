@@ -357,7 +357,11 @@ class Page_Loader extends Base
 
     public function discount_notice()
     {
-        
+        $campaign_bool = apply_filters( 'wcmmq_campaign_bool', true );
+        if( ! $campaign_bool ) return;
+
+        $campaign_bool = apply_filters( 'ca_campaign_bool', true );
+        if( ! $campaign_bool ) return;
 
         $logo = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
         $link_label = __( 'Claim Your Coupon', 'woo-product-table' );
