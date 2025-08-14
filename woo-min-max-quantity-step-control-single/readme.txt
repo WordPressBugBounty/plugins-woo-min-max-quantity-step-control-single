@@ -5,7 +5,7 @@ Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purcha
 Requires at least: 4.0.0
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 7.0.0
+Stable tag: 7.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -257,11 +257,14 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
-== 7.0.0 ==
+= 7.0.1 =
+* block theme's issue on cart adding - has been fixed.
+* Supported on block theme 
+* Block theme's quantity issue has been fixed.
+* checked with latest woocommerce and updated.
+* Bug Fixed.
 
-* Bug Fixed
-
-= 7.0 =
+= 7.0.0 =
 * new filter hook added.
 * checked with latest woocommerce and updated.
 * Bug Fixed.

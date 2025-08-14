@@ -145,7 +145,7 @@ class Min_Max_Controller extends Base
          * We have added following filter,
          * Which is similar like woocommerce_quantity_input_step, woocommerce_quantity_input_min and woocommerce_quantity_input_max
          */
-        add_filter( 'woocommerce_store_api_product_quantity_multiple_of', [$this, 'quantity_input_step'], 9999, 2 );
+        add_filter( 'woocommerce_store_api_product_quantity_multiple_of', [$this, 'quantity_input_step_store_api'], 9999, 2 );
         add_filter( 'woocommerce_store_api_product_quantity_minimum', [$this, 'quantity_input_min'], 9999, 2 );
         add_filter( 'woocommerce_store_api_product_quantity_maximum', [$this, 'api_quantity_input_max'], 9999, 2 );
 
@@ -171,7 +171,30 @@ class Min_Max_Controller extends Base
          */
         add_filter('wcmmq_single_product_min_max_condition', [$this, 'compatible_with_other_plugins']);
         add_action('wp_footer',[$this, 'footer_content']);
+
+        /**
+         * Specially for block theme and block loop in anywhere
+         * asole jokhon block niye kaj korchilam, tokhon problem korchilo.
+         * ejonno eta korechi.
+         */
+        add_filter('woocommerce_add_to_cart_quantity', [$this, 'quantity_input_min_for_api_store'], 99, 2);
+
+
         self::$init = $this;
+    }
+
+    /**
+     * Specially for block theme and block loop in anywhere
+     *
+     * @param int|numeric $qty
+     * @param int $product_id
+     * @return int|numeric
+     */
+    public function quantity_input_min_for_api_store($qty, $product_id)
+    {
+        if( $qty !== 1 ) return $qty;
+        $product = wc_get_product($product_id);
+        return $this->quantity_input_min($qty, $product);
     }
     
     public static function init()
@@ -799,10 +822,37 @@ style="display:none !important;"></div>
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
-
-        return $this->step_value;
+		$this->step_value;
     }
 
+    /**
+     * Individule quantity setup using single filter
+     * Actually user when used Gutenberg block for WooCommerce,
+     * Then this method will be used, becuase for Gutenberg block of WooCommerce - deciaml value is not possible
+     * * So, we will round the value and return it
+     *
+     * @since 7.0.0.1
+     * @author Saiful Islam <codersaiful@gmail.com>
+     * @param int|string $qty
+     * @param object $product
+     * @return int|string
+     */
+	public function quantity_input_step_store_api( $qty, $product ){
+		$qty = $this->quantity_input_step($qty, $product);
+		$rounded_bool = apply_filters( 'wcmmq_block_qty_round', true, $qty, $this->product_id, 'multiple_of' );
+		if($rounded_bool){
+			$rounded_qty = round($qty);
+		}else{
+			$rounded_qty = $qty;
+		}
+		
+		if( $rounded_qty == 0 || $rounded_qty <= 0 || ( $rounded_bool && $rounded_qty < 1 ) ){
+			$rounded_qty = 1;
+		}
+		
+        return $rounded_qty;// 
+	}
+	
     /**
      * Individule quantity setup using single filter
      *
@@ -820,8 +870,22 @@ style="display:none !important;"></div>
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
+        
+		return $this->min_value;
+		/**
+		 * 
+		 $rounded_bool = apply_filters( 'wcmmq_block_qty_round', true, $this->min_value, $this->product_id, 'step' );
+		if($rounded_bool){
+			$rounded_qty = round($this->min_value);
+		}else{
+			$rounded_qty = $this->min_value;
+		}
+		
+        return $rounded_qty;// 
+		 * 
+		 *  */
+		
 
-        return $this->min_value;
     }
 
     /**
@@ -840,6 +904,20 @@ style="display:none !important;"></div>
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
 
+		/**
+		 * 
+		 $rounded_bool = apply_filters( 'wcmmq_block_qty_round', true, $this->max_value, $this->product_id, 'step' );
+		if($rounded_bool && ! empty( $this->max_value ) ){
+			$rounded_qty = round($this->max_value);
+		}else{
+			$rounded_qty = $this->max_value;
+		}
+
+        return $rounded_qty;//
+		 * 
+		 */
+		
+		
         return $this->max_value;
     }
     public function api_quantity_input_max($qty, $product)

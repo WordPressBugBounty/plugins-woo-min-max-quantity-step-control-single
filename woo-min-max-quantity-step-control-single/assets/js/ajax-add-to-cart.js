@@ -10,6 +10,10 @@
         
         $(document.body).on('click', 'body.single .single_add_to_cart_button', function (e) {
 
+            if(typeof wc_add_to_cart_params === 'undefined'){
+                return;
+            }
+
             // var simple_product = $(this).closest('div.product-type-simple');
             
             // if(simple_product.length < 1){
