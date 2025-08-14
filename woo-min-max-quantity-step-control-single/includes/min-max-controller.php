@@ -822,7 +822,7 @@ style="display:none !important;"></div>
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
-		$this->step_value;
+		return $this->step_value;
     }
 
     /**
