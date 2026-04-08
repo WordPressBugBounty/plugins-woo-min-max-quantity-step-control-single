@@ -758,7 +758,9 @@ style="display:none !important;"></div>
         }
 
         if(isset($args['attributes']['data-product_id']) || isset($args['attributes']['data-product_sku'])){
-            $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] ? $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value : '';
+            // $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] ? $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value : '';
+            $min_qty_msg = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] ?? '';
+            $args['attributes']['title'] = $min_qty_msg ? $min_qty_msg . ' ' . $this->min_value : '';
         }
 
         /**

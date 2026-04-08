@@ -3,7 +3,8 @@ namespace WC_MMQ\Admin;
 
 use WC_MMQ\Core\Base;
 use WC_MMQ\Modules\Module_Controller;
-use WC_MMQ\Includes\Min_Max_Controller;;
+use WC_MMQ\Includes\Min_Max_Controller;
+use WC_MMQ\Admin\Adm_Inc\Notice_Framework;
 
 class Page_Loader extends Base
 {
@@ -20,17 +21,22 @@ class Page_Loader extends Base
     protected $pro_version;
     public $license;
     public $module_controller;
+    public $notice_framework;
 
     public function __construct()
     {
+
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
         $this->is_premium_installed = wcmmq_is_premium_installed();
+        $this->notice_framework = new Notice_Framework();
+        $this->notice_framework->plugins_recommendation();
         if($this->is_pro){
             $this->pro_version = WC_MMQ_PRO_VERSION;
             $this->license = property_exists('\WC_MMQ_PRO','direct') ? \WC_MMQ_PRO::$direct : null;
             $this->handle_license_n_update();
+            $this->notice_framework->offer_in_premium(); // This notice will show only in pro version, if user have not installed free version. otherwise, it will not show.
         }else{
-            add_action( 'admin_notices', [$this, 'discount_notice'] );
+            $this->notice_framework->offer_4_premium_in_free();
         }
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';
@@ -387,57 +393,5 @@ class Page_Loader extends Base
         $this->topbar_sub_title = __( 'Browse our Plugins','woo-product-table' );
         include $this->topbar_file;
         include $this->page_folder_dir . 'browse-plugins.php';
-    }
-
-    /**
-     * Displays an admin notice offering a discount for Woo Product Table Pro.
-     *
-     * The notice includes a 15% discount offer with a link to the pricing page and 
-     * another link to free plugins. The notice is shown randomly with a 5% chance 
-     * on non-Woo Product Table admin pages.
-     *
-     * @global object $current_screen The current screen object in the WordPress admin.
-     *
-     * @return void
-     */
-
-    public function discount_notice()
-    {
-        return;
-
-        if( $this->is_premium_installed ) return;
-
-        $campaign_bool = apply_filters( 'wcmmq_campaign_bool', true );
-        if( ! $campaign_bool ) return;
-
-        $campaign_bool = apply_filters( 'ca_campaign_bool', true );
-        if( ! $campaign_bool ) return;
-
-        $logo = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
-        $link_label = __( 'Claim Your Coupon', 'woo-min-max-quantity-step-control-single' );
-        $link = 'https://codeastrology.com/min-max-quantity/pricing/&discount=DISCOUNT';
-        $plug_name = __( 'Min Max Control Pro', 'woo-min-max-quantity-step-control-single' );
-
-        global $current_screen;
-        $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
-        $wpt = strpos( $s_id, $this->plugin_prefix ) !== false;
-        $is_dissmissable_class = ! $wpt ? 'is-dismissible' : '';
-        $rand = wp_rand( 1, 15 );
-
-        if( ! $wpt && $rand != 1 ) return;
-        ob_start();
-        
-        ?>
-        <div class="notice <?php echo esc_attr( $is_dissmissable_class ); ?> notice-warning updated wcmmq-discount-notice">
-            <div class="wcmmq-license-notice-inside">
-                <img src="<?php echo esc_url( $logo ); ?>" class="wcmmq-license-brand-logo">
-                🎉 <span style="color: #d00;font-weight:bold;">Unlock 20% OFF</span> <strong><?php echo esc_html( $plug_name ); ?></strong> - Use your coupon at checkout (Limited time)
-                <a class="wcmmq-get-discount" href="<?php echo esc_url( $link ); ?>" target="_blank"><?php echo esc_html( $link_label ); ?></a>
-                <a class="wcmmq-get-free" href="https://profiles.wordpress.org/codersaiful/#content-plugins" target="_blank">Free plugins for you</a>
-            </div>
-        </div>
-        <?php
-        $full_message = ob_get_clean();
-        echo wp_kses_post( $full_message );  
     }
 }

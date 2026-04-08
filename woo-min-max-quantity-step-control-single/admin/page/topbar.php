@@ -68,7 +68,7 @@ if( isset( $this->topbar_sub_title ) && ! empty( $this->topbar_sub_title ) ){
                     <?php } ?>
                 
                 <a class="wcmmq-btn wcmmq-btn-tiny" 
-                    href="<?php echo esc_url( admin_url('admin.php?page=wcmmq-min-max-control-contact') ) ?>" 
+                    href=" https://codeastrology.com/my-support/" 
                     target="_blank">
                     <i class="wcmmq_icon-user"></i>Support
                 </a>

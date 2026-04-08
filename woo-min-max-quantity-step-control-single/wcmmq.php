@@ -8,11 +8,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 8.0.1
+ * Version: 8.0.2
  * Requires at least:    4.0.0
  * Tested up to:         6.9
  * WC requires at least: 3.0.0
- * WC tested up to: 	 10.4.3
+ * WC tested up to: 	 10.6.2
  * 
  * Text Domain: woo-min-max-quantity-step-control-single
  * Domain Path: /languages/
@@ -30,7 +30,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '8.0.1.0');
+define('WC_MMQ_VERSION', '8.0.2.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -168,7 +168,7 @@ if( ! class_exists( 'WC_MMQ' ) ){
             include_once dirname(__FILE__) . '/admin/add_options_admin.php';
             include_once dirname(__FILE__) . '/admin/plugin_setting_link.php';
 
-            \WC_MMQ\Framework\Recommeded::check();
+            // \WC_MMQ\Framework\Recommeded::check();
             new \WC_MMQ\Admin\Admin_Loader();
         }
         
@@ -199,11 +199,6 @@ if( ! class_exists( 'WC_MMQ' ) ){
             );
 
             require_once __DIR__ . '/autoloader.php';
-            $pro_file = dirname( __FILE__ ) . '/premium/premium-loader.php';
-
-            if ( file_exists( $pro_file ) ) { 
-                // require_once $pro_file;
-            }
             
             if( \WC_MMQ\Framework\Plugin_Required::fail() ){
                 return;
