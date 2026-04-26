@@ -247,7 +247,7 @@ class Notice_Framework {
                 'slug'        => 'bizzswatches',
                 'name'        => 'Bizzswatches - Color and Image Swatches',
                 'description' => __('Add color and image swatches to your WooCommerce products.', 'woo-min-max-quantity-step-control-single'),
-                'icon'        => 'https://ps.w.org/bizzswatches/assets/icon-256x256.png?new',
+                'icon'        => 'https://ps.w.org/bizzswatches/assets/icon-256x256.png',
                 'author'      => 'Bizzplugin',
                 'path'        => 'bizzswatches/bizzswatches.php',
                 'url'         => 'https://wordpress.org/plugins/bizzswatches/',

@@ -41,6 +41,7 @@ if ( ! class_exists( 'CA_Framework_Popup' ) ) {
             'start_date'     => '',
             'end_date'       => '',
             'buttons'        => array(),
+            'target_plugin'  => array(),
             'badge_text'     => '',
             'image_url'      => '',
             'show_countdown' => false,

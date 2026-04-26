@@ -34,9 +34,9 @@ class Page_Loader extends Base
             $this->pro_version = WC_MMQ_PRO_VERSION;
             $this->license = property_exists('\WC_MMQ_PRO','direct') ? \WC_MMQ_PRO::$direct : null;
             $this->handle_license_n_update();
-            $this->notice_framework->offer_in_premium(); // This notice will show only in pro version, if user have not installed free version. otherwise, it will not show.
+            // $this->notice_framework->offer_in_premium(); // This notice will show only in pro version, if user have not installed free version. otherwise, it will not show.
         }else{
-            $this->notice_framework->offer_4_premium_in_free();
+            // $this->notice_framework->offer_4_premium_in_free();
         }
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';

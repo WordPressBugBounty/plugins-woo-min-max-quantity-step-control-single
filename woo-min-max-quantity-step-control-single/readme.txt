@@ -5,7 +5,7 @@ Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purcha
 Requires at least: 4.0.0
 Tested up to: 6.9
 Requires PHP: 5.4
-Stable tag: 8.0.2
+Stable tag: 8.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -255,6 +255,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 8.0.3 =
+* Promotional offer has removed.
+* Bug Fixed.
 
 = 8.0.2 =
 * Tested with latest WooCommerce and WordPress version.

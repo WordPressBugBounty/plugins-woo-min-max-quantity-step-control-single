@@ -119,6 +119,7 @@ if ( ! class_exists( 'CA_Framework' ) ) {
          */
         private function load_classes() {
             require_once $this->framework_dir . 'classes/class-dismiss-handler.php';
+            require_once $this->framework_dir . 'classes/class-render-elements.php';
             require_once $this->framework_dir . 'classes/class-offer.php';
             require_once $this->framework_dir . 'classes/class-popup.php';
             require_once $this->framework_dir . 'classes/class-required-plugin.php';

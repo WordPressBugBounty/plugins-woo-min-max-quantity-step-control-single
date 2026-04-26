@@ -49,9 +49,9 @@ $no_dismiss = $no_dismiss ?? false;
                 <p class="ca-fw-offer-desc"><?php echo wp_kses_post( $offer['description'] ); ?></p>
             <?php endif; ?>
 
-            <?php echo CA_Framework_Offer::render_countdown( $offer ); ?>
+            <?php echo CA_Framework_Render_Elements::render_countdown( $offer ); ?>
 
-            <?php echo CA_Framework_Offer::render_buttons( $offer['buttons'] ); ?>
+            <?php echo CA_Framework_Render_Elements::render_buttons( $offer['buttons'], $offer['target_plugin'] ); ?>
         </div>
     </div>
 </div>

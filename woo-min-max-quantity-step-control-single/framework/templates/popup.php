@@ -40,10 +40,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <div class="ca-fw-popup-desc"><?php echo wp_kses_post( $popup['description'] ); ?></div>
             <?php endif; ?>
 
-            <?php echo CA_Framework_Offer::render_countdown( $popup ); ?>
+            <?php echo CA_Framework_Render_Elements::render_countdown( $popup ); ?>
 
             <?php if ( ! empty( $popup['buttons'] ) ) : ?>
-                <?php echo CA_Framework_Offer::render_buttons( $popup['buttons'] ); ?>
+                <?php echo CA_Framework_Render_Elements::render_buttons( $popup['buttons'], $popup['target_plugin'] ); ?>
             <?php endif; ?>
         </div>
     </div>

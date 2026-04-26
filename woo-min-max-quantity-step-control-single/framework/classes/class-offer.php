@@ -49,6 +49,7 @@ if ( ! class_exists( 'CA_Framework_Offer' ) ) {
             'end_date'       => '',
             'template'       => 'starter',
             'buttons'        => array(),
+            'target_plugin'  => array(),
             'badge_text'     => '',
             'highlight_text' => '',
             'image_url'      => '',
@@ -75,6 +76,8 @@ if ( ! class_exists( 'CA_Framework_Offer' ) ) {
                 $this->args['id'] = $this->args['plugin_slug'] . '_offer_' . md5( $this->args['title'] );
             }
         }
+
+
 
         /**
          * Display the offer by hooking into WordPress admin_notices (with dismiss).
@@ -203,85 +206,6 @@ if ( ! class_exists( 'CA_Framework_Offer' ) ) {
             if(!$show_on_hook) echo '</div>';
         }
 
-        /**
-         * Render offer buttons HTML.
-         *
-         * @param array $buttons Button configurations.
-         * @return string
-         */
-        public static function render_buttons( $buttons = array() ) {
-            if ( empty( $buttons ) ) {
-                return '';
-            }
-
-            $html = '<div class="ca-fw-offer-buttons">';
-            foreach ( $buttons as $button ) {
-                $btn = wp_parse_args( $button, array(
-                    'text'   => '',
-                    'url'    => '#',
-                    'class'  => 'ca-fw-btn-primary',
-                    'target' => '_blank',
-                    'icon'   => '',
-                ) );
-
-                $icon_html = '';
-                if ( ! empty( $btn['icon'] ) ) {
-                    $icon_html = '<span class="dashicons ' . esc_attr( $btn['icon'] ) . '"></span> ';
-                }
-
-                $html .= sprintf(
-                    '<a href="%s" class="ca-fw-btn %s" target="%s">%s%s</a>',
-                    esc_url( $btn['url'] ),
-                    esc_attr( $btn['class'] ),
-                    esc_attr( $btn['target'] ),
-                    $icon_html,
-                    esc_html( $btn['text'] )
-                );
-            }
-            $html .= '</div>';
-
-            return $html;
-        }
-
-        /**
-         * Render countdown HTML if enabled and end_date is set.
-         *
-         * @param array $config Offer or popup configuration array.
-         * @return string
-         */
-        public static function render_countdown( $config = array() ) {
-            if ( empty( $config['show_countdown'] ) || empty( $config['end_date'] ) ) {
-                return '';
-            }
-
-            $end_timestamp = strtotime( $config['end_date'] );
-            if ( ! $end_timestamp ) {
-                return '';
-            }
-
-            $end_iso = gmdate( 'Y-m-d\TH:i:s', $end_timestamp );
-
-            return '<div class="ca-fw-countdown" data-end-date="' . esc_attr( $end_iso ) . '">
-                <div class="ca-fw-countdown-item">
-                    <span class="ca-fw-countdown-number" data-days>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Days', 'flavor-jelee' ) . '</span>
-                </div>
-                <div class="ca-fw-countdown-sep">:</div>
-                <div class="ca-fw-countdown-item">
-                    <span class="ca-fw-countdown-number" data-hours>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Hours', 'flavor-jelee' ) . '</span>
-                </div>
-                <div class="ca-fw-countdown-sep">:</div>
-                <div class="ca-fw-countdown-item">
-                    <span class="ca-fw-countdown-number" data-minutes>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Min', 'flavor-jelee' ) . '</span>
-                </div>
-                <div class="ca-fw-countdown-sep">:</div>
-                <div class="ca-fw-countdown-item">
-                    <span class="ca-fw-countdown-number" data-seconds>00</span>
-                    <span class="ca-fw-countdown-label">' . esc_html__( 'Sec', 'flavor-jelee' ) . '</span>
-                </div>
-            </div>';
-        }
+        
     }
 }
