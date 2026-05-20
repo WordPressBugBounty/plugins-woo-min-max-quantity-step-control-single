@@ -49,6 +49,11 @@ class Page_Loader extends Base
     {
         add_action( 'admin_menu', [$this, 'admin_menu'] );
         add_action( 'admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'] );
+
+        if ( class_exists( '\WC_MMQ\Admin\Appseros\Src\Client' ) ) {
+            $client = new \WC_MMQ\Admin\Appseros\Src\Client( '275a9ec5-e5ec-433d-84ae-16c1a20fc601', 'Min Max Control', WC_MMQ__FILE__ );
+            $client->insights()->init();
+        }
     }
 
     
