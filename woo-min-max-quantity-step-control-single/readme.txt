@@ -3,9 +3,9 @@ Contributors: codersaiful,bizzplugin,codeastrology,mdibrahimk48,unikforce,fazleb
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purchase, limit quantity, customize woocommerce quantity
 Requires at least: 4.0.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 5.4
-Stable tag: 8.0.3
+Stable tag: 8.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -255,6 +255,12 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 8.0.4 =
+* Tested with latest WooCommerce and WordPress version.
+* Performance Optimized.
+* Code Optimized.
+* Bug Fixed.
 
 = 8.0.3 =
 * Promotional offer has removed.
