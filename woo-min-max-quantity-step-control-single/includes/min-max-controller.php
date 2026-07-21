@@ -984,6 +984,10 @@ style="display:none !important;"></div>
         $variation_id = $values['variation_id'] ?? null;
 
         $this->product = wc_get_product( $product_id );
+        
+        if ( ! $this->product instanceof \WC_Product ) {
+            return $bool;
+        }
         if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
 
         $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);
