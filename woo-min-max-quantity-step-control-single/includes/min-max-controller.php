@@ -291,6 +291,7 @@ class Min_Max_Controller extends Base
         if( ! defined('WC_MMQ_PRO_VERSION') ) return;
         global $product;
         $product = $this->purefy_product( $product );
+        if( ! is_object( $product ) || ! method_exists( $product, 'get_id' ) ) return;
         $this->product_id = $product->get_id();
         $this->product = wc_get_product( $this->product_id );
         $variables = $product->get_children();
@@ -663,12 +664,10 @@ style="display:none !important;"></div>
     {
         $this->temp_args = $args;
         // dd($args);
+        if( ! is_object( $product ) || ! method_exists( $product, 'is_sold_individually' ) ) return $args;
         if( $product->is_sold_individually() ) return $args;
-        $this->product = $product;
-        if( $this->wpml_bool ){
-            $default_product_id = apply_filters('wpml_object_id', $this->product->get_id(), 'product', false, $this->wpml_default_lang);
-            $this->product = wc_get_product( $default_product_id );
-        }
+        $this->product = $this->purefy_product( $product );
+        if( ! is_object( $this->product ) || ! method_exists( $this->product, 'get_id' ) ) return $args;
         $this->variation_id = null;
         $this->product_id = $this->product->get_id();
         $this->get_product_type = $this->product->get_type();
@@ -799,9 +798,19 @@ style="display:none !important;"></div>
      */
     public function purefy_product( $product )
     {
+        if( ! is_object( $product ) || ! method_exists( $product, 'get_id' ) ){
+            return $product;
+        }
+
         if( $this->wpml_bool ){
-            $default_product_id = apply_filters('wpml_object_id', $product->get_id(), 'product', false, $this->wpml_default_lang);
-            return wc_get_product( $default_product_id );
+            $post_type = method_exists( $product, 'is_type' ) && $product->is_type('variation') ? 'product_variation' : 'product';
+            $default_product_id = apply_filters('wpml_object_id', $product->get_id(), $post_type, true, $this->wpml_default_lang);
+            if( $default_product_id ){
+                $default_product = wc_get_product( $default_product_id );
+                if( $default_product && is_object( $default_product ) ){
+                    return $default_product;
+                }
+            }
         }
         return $product;
     }
@@ -820,6 +829,7 @@ style="display:none !important;"></div>
         if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
         $this->product = $this->purefy_product( $product );
+        if( ! is_object( $this->product ) || ! method_exists( $this->product, 'get_id' ) ) return $qty;
 
         $this->product_id = $this->product->get_id();
 
@@ -869,6 +879,7 @@ style="display:none !important;"></div>
         if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
         $this->product = $this->purefy_product( $product );
+        if( ! is_object( $this->product ) || ! method_exists( $this->product, 'get_id' ) ) return $qty;
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -900,8 +911,11 @@ style="display:none !important;"></div>
      */
     public function quantity_input_max($qty, $product)
     {
+        if( ! is_object( $product ) ) return $qty;
+        if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
         $this->product = $this->purefy_product( $product );
+        if( ! is_object( $this->product ) || ! method_exists( $this->product, 'get_id' ) ) return $qty;
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -926,6 +940,7 @@ style="display:none !important;"></div>
     public function api_quantity_input_max($qty, $product)
     {
         $product = $this->purefy_product( $product );
+        if( ! is_object( $product ) ) return PHP_INT_MAX;
         $final_qty = $this->quantity_input_max($qty, $product);
         if( empty($final_qty) || ! is_numeric( $final_qty ) ) return PHP_INT_MAX;
 
@@ -1190,8 +1205,11 @@ style="display:none !important;"></div>
     private function getMeta($meta_key)
     {
         if($this->wpml_bool){
-            $this->product_id = apply_filters('wpml_object_id', $this->product_id, 'product', false, $this->wpml_default_lang);
-            $this->product = wc_get_product( $this->product_id ); 
+            $this->product_id = apply_filters('wpml_object_id', $this->product_id, 'product', true, $this->wpml_default_lang);
+            $product = wc_get_product( $this->product_id ); 
+            if( $product && is_object( $product ) ){
+                $this->product = $product;
+            }
         }
         
         $value = get_post_meta($this->product_id,$meta_key,true);
@@ -1202,7 +1220,7 @@ style="display:none !important;"></div>
     private function getMetaVariation($meta_key)
     {
         if($this->wpml_bool){
-            $this->variation_id = apply_filters('wpml_object_id', $this->variation_id, 'product', false, $this->wpml_default_lang);
+            $this->variation_id = apply_filters('wpml_object_id', $this->variation_id, 'product_variation', true, $this->wpml_default_lang);
 
         }
 
