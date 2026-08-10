@@ -36,7 +36,16 @@
                 self.validateCustomMessage(this);
             });
 
-            // Variation stock/limits
+            // Standard WooCommerce variation events (works for both inline & AJAX variation loading)
+            $(document.body).on('found_variation', 'form.variations_form', function(e, variation) {
+                self.applyVariationData($(this), variation);
+            });
+
+            $(document.body).on('reset_data', 'form.variations_form', function() {
+                $(this).find('.wcmmq-custom-stock-msg').remove();
+            });
+
+            // Variation stock/limits (fallback for input changes)
             $(document.body).on('change', 'form.variations_form.cart input.variation_id', function() {
                 self.handleVariationChange($(this));
             });
@@ -110,11 +119,46 @@
             }
         },
 
-        handleVariationChange: function($input) {
-            const form = $input.closest('form.variations_form.cart');
+        applyVariationData: function(form, variationData) {
+            if (!variationData) return;
             form.find('.wcmmq-custom-stock-msg').remove();
 
             const qtyBox = form.find('input.input-text.qty.text');
+            let { is_in_stock, availability_html, min_value, max_value, step, min_qty, max_qty } = variationData;
+
+            min_value = (min_value !== undefined && min_value !== '') ? min_value : min_qty;
+            max_value = (max_value !== undefined && max_value !== '') ? max_value : max_qty;
+            step = (step !== undefined && step !== '') ? step : 1;
+
+            if (!is_in_stock) {
+                if (availability_html) {
+                    form.find('.single_variation_wrap').prepend('<div class="wcmmq-custom-stock-msg">' + availability_html + '</div>');
+                }
+                min_value = max_value = step = 0;
+            }
+
+            const attrs = {};
+            if (min_value !== undefined && min_value !== '') attrs.min = min_value;
+            if (max_value !== undefined) attrs.max = max_value;
+            if (step !== undefined && step !== '') attrs.step = step;
+
+            qtyBox.attr(attrs);
+
+            let currentVal = parseFloat(qtyBox.val());
+            let minValFloat = parseFloat(min_value);
+            if (!isNaN(minValFloat) && minValFloat > 0 && (isNaN(currentVal) || currentVal < minValFloat)) {
+                qtyBox.val(min_value).trigger('change');
+            } else {
+                qtyBox.trigger('change');
+            }
+
+            if (!is_in_stock) {
+                this.showNotification('This variation is out of stock.', 'error', 8000);
+            }
+        },
+
+        handleVariationChange: function($input) {
+            const form = $input.closest('form.variations_form.cart');
             let variationId = parseInt($input.val());
 
             if (!(variationId > 0)) return;
@@ -124,28 +168,14 @@
                 productVariations = form.find('.wcmmq-available-variaions').data('product_variations');
             }
 
-            $.each(productVariations, function(index, eachVariation) {
-                if (eachVariation.variation_id == variationId) {
-
-                    let { is_in_stock, availability_html, min_value, max_value, step } = eachVariation;
-
-                    if (!is_in_stock) {
-                        form.find('.single_variation_wrap').prepend('<div class="wcmmq-custom-stock-msg">' + availability_html + '</div>');
-                        min_value = max_value = step = 0;
+            if (productVariations && $.isArray(productVariations)) {
+                const self = this;
+                $.each(productVariations, function(index, eachVariation) {
+                    if (eachVariation.variation_id == variationId) {
+                        self.applyVariationData(form, eachVariation);
                     }
-
-                    const updater = setInterval(() => {
-                        qtyBox.attr({ min: min_value, max: max_value, step: step, value: min_value });
-                        qtyBox.val(min_value).trigger('change');
-                        clearInterval(updater);
-                    }, 200);
-
-
-                    if (!is_in_stock) {
-                        WCMMQCustom.showNotification('This variation is out of stock.', 'error', 8000);
-                    }
-                }
-            });
+                });
+            }
         },
 
         distributeMinMax: function(variationId, variationData, qtyBox) {

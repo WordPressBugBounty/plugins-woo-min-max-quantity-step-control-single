@@ -50,7 +50,7 @@ class Notice_Framework {
                     ),
                     array(
                         'text'  => 'Live Demo',
-                        'url'   => 'https://wpprincipal.xyz/',
+                        'url'   => 'https://demo.codeastrology.com/',
                         'class' => 'ca-fw-btn-primary',
                         'icon'  => 'dashicons-visibility',
                     ),
@@ -140,7 +140,7 @@ class Notice_Framework {
                     ),
                     array(
                         'text'  => 'Premium Demo',
-                        'url'   => 'https://wpprincipal.xyz/?demo=wcmmq',
+                        'url'   => 'https://demo.codeastrology.com/?demo=wcmmq',
                         'class' => 'ca-fw-btn-outline',
                         'icon'  => 'dashicons-visibility',
                     ),

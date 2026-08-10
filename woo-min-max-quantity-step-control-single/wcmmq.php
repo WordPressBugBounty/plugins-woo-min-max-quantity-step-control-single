@@ -8,11 +8,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 8.0.8
+ * Version: 8.0.9
  * Requires at least:    4.0.0
  * Tested up to:         7.0
  * WC requires at least: 3.0.0
- * WC tested up to: 	 10.9.4
+ * WC tested up to: 	 11.0.0
  * 
  * Text Domain: woo-min-max-quantity-step-control-single
  * Domain Path: /languages/
@@ -30,7 +30,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '8.0.8.0');
+define('WC_MMQ_VERSION', '8.0.9.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -266,14 +266,8 @@ if( ! class_exists( 'WC_MMQ' ) ){
          * @access public
          */
         public function add_resource_hints() {
-            // Only add resource hints on WooCommerce pages
-            if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() && ! is_account_page() && ! is_shop() ) {
-                return;
-            }
-            
-            // Prefetch critical plugin assets for better performance
-            echo '<link rel="prefetch" href="' . esc_url(WC_MMQ_BASE_URL . 'assets/js/custom.js') . '">' . "\n";
-            echo '<link rel="prefetch" href="' . esc_url(WC_MMQ_BASE_URL . 'assets/css/wcmmq-front.css') . '">' . "\n";
+            // Resource hints handled by standard WP enqueue to prevent execution order issues with optimization tools
+            return;
         }
 
 

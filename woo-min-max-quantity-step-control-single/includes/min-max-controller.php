@@ -225,7 +225,21 @@ class Min_Max_Controller extends Base
      */
     public function insert_temp_product_variations(){
         global $product;
+        if ( ! $product || ! is_a( $product, 'WC_Product_Variable' ) ) {
+            return;
+        }
+
+        // Do not output fallback payload if WooCommerce is using AJAX variation loading
+        $threshold = apply_filters( 'woocommerce_ajax_variation_threshold', 30, $product );
+        if ( count( $product->get_children() ) > $threshold ) {
+            return;
+        }
+
         $available_variations = $product->get_available_variations();
+        if ( empty( $available_variations ) ) {
+            return;
+        }
+
         $variations_json = wp_json_encode( $available_variations );
         $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
         ?>

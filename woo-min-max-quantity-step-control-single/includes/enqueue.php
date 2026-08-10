@@ -30,8 +30,6 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
         wp_register_script( 'wcmmq-custom-script', WC_MMQ_BASE_URL . 'assets/js/custom.js', array( 'jquery' ), $js_version, true );
         wp_enqueue_script( 'wcmmq-custom-script' );
 
-        // Add async attribute for better performance on supported browsers
-        add_filter( 'script_loader_tag', 'wcmmq_add_async_attribute', 10, 2 );
 
         /**
          * attrchange js and variation-js file has transferred on pro version.
@@ -69,21 +67,4 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
 }
 add_action( 'wp_enqueue_scripts', 'wcmmq_enqueue', 99 );
 
-if( !function_exists( 'wcmmq_add_async_attribute' ) ){
-    /**
-     * Add async attribute to WCMMQ scripts for better performance
-     * 
-     * @param string $tag The script tag
-     * @param string $handle The script handle
-     * @return string Modified script tag
-     * @since 7.0.4
-     */
-    function wcmmq_add_async_attribute( $tag, $handle ) {
-        // Only add async to our custom script since it doesn't block page rendering
-        if ( 'wcmmq-custom-script' === $handle ) {
-            return str_replace( ' src', ' async src', $tag );
-        }
-        return $tag;
-    }
-}
 
