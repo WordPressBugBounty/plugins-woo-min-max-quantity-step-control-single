@@ -147,6 +147,9 @@ $is_pro = $this->is_pro;
 
                     
         </form>
+
+        <?php \CodeAstrology\Shared\Expert_Services::render_settings_card( 'min-max-control' ); ?>
+
         <div class="wcmmq-section-panel supported-terms wcmmq-recomendation-area" id="wcmmq-recomendation-area">
             <table class="wcmmq-table universal-setting">
                 <thead>

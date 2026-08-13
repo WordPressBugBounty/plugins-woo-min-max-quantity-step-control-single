@@ -60,7 +60,7 @@ if( isset( $this->topbar_sub_title ) && ! empty( $this->topbar_sub_title ) ){
                     </a>
                 <?php }else{ ?>
                     <a class="wcmmq-btn reverse wcmmq-btn-tiny wcmmq-get-premium" 
-                        href="https://codeastrology.com/min-max-quantity/pricing/" 
+                        href="https://minmaxquantity.com/pricing/" 
                         target="_blank">
                         <i class="wcmmq_icon-spin5 animate-spin"></i>
                         Get Premium Features
@@ -73,7 +73,7 @@ if( isset( $this->topbar_sub_title ) && ! empty( $this->topbar_sub_title ) ){
                     <i class="wcmmq_icon-user"></i>Support
                 </a>
                 <a class="wcmmq-btn reset wcmmq-btn-tiny" 
-                    href="https://codeastrology.com/min-max-quantity/documentation/" 
+                    href="https://minmaxquantity.com/documentation/" 
                     target="_blank">
                     <i class="wcmmq_icon-help-circled"></i>Doc
                 </a>

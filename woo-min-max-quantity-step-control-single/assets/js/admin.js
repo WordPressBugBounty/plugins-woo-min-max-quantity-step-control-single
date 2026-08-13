@@ -37,9 +37,9 @@
         $(document.body).on('click','.wcmmq-premium',function(){
             
             var img_link = $(this).find('img').attr('src');
-            var link = 'https://codeastrology.com/min-max-quantity/pricing/';
+            var link = 'https://minmaxquantity.com/pricing/';
             window.open(img_link,'_blank');
-            // window.location.href = 'https://codeastrology.com/min-max-quantity/pricing/';
+            // window.location.href = 'https://minmaxquantity.com/pricing/';
         });
         
         $(document.body).on('submit', 'form#wcmmq-main-configuration-form', function (e){

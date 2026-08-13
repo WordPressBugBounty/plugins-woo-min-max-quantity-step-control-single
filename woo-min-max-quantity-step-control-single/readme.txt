@@ -3,16 +3,16 @@ Contributors: codersaiful,bizzplugin,codeastrology,mdibrahimk48,unikforce,fazleb
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purchase, limit quantity, customize woocommerce quantity
 Requires at least: 4.0.0
-Tested up to: 7.0
-Requires PHP: 5.4
-Stable tag: 8.0.9
+Tested up to: 7.1
+Requires PHP: 5.6
+Stable tag: 8.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Min Max Control plugin offers to set product's minimum, maximum quantity and step of each product individually.
 
 == Description ==
-[Doc](https://codeastrology.com/min-max-quantity/documentation/) | [Demo](https://codeastrology.com/min-max-quantity/product/hoodie) | [Get Premium](https://codeastrology.com/min-max-quantity/pricing/)
+[Doc](https://minmaxquantity.com/documentation/) | [Demo](https://minmaxquantity.com/product/hoodie) | [Get Premium](https://minmaxquantity.com/pricing/)
 
 *Min Max Control*(Min Max Quantity & Step Control for WooCommerce) plugin offers to set product’s 
 
@@ -37,10 +37,10 @@ https://www.youtube.com/watch?v=9sO9L8joy48
 
 **Useful Links**
 
-* [Offical Site](https://codeastrology.com/min-max-quantity/)
-* [Demo](https://codeastrology.com/min-max-quantity/shop)
-* [Documentation](https://codeastrology.com/min-max-quantity/documentation/)
-* [Purchase Premium Version](https://codeastrology.com/min-max-quantity/pricing/)  
+* [Offical Site](https://minmaxquantity.com/)
+* [Demo](https://minmaxquantity.com/shop)
+* [Documentation](https://minmaxquantity.com/documentation/)
+* [Purchase Premium Version](https://minmaxquantity.com/pricing/)  
 
 **Useful Hook**
 `wcmmq_custom_validation_msg`: To modify custom validation for your browser, use `add_filter('wcmmq_custom_validation_msg', '__return_true');`
@@ -56,16 +56,16 @@ function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )
 **Example for Custom Validation Message**
 `add_filter( 'wcmmq_custom_validation_msg', '__return_true' );`
 
-🔅 [Set Global Condition on Whole Shop](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/)
-🔅 [Global Condition On Categories](https://codeastrology.com/min-max-quantity/global-condition-on-categories/)
-🔅 [Set Conditions To A Specific Category (Premium) ](https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/)
-🔅 [Global Condition On Tag (Premium) ](https://codeastrology.com/min-max-quantity/global-condition-on-tag/)
-🔅 [Set Values To The Product Individually](https://codeastrology.com/min-max-quantity/set-values-to-the-product-individually/)
-🔅 [Multiply Price By Quantity (Premium) ](https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/)
-🔅 [Decimal Quantity (Premium) ](https://codeastrology.com/min-max-quantity/decimal-quantity/)
-🔅 [Set values on each variation (Premium) ](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
-🔅 [Set Conditions On Cart Page (Premium) ](https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/)
-🔅 [Exclude/Include Products On Cart Page (Premium) ](https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/)
+🔅 [Set Global Condition on Whole Shop](https://minmaxquantity.com/set-global-condition-on-whole-shop/)
+🔅 [Global Condition On Categories](https://minmaxquantity.com/global-condition-on-categories/)
+🔅 [Set Conditions To A Specific Category (Premium) ](https://minmaxquantity.com/set-conditions-to-a-specific-category/)
+🔅 [Global Condition On Tag (Premium) ](https://minmaxquantity.com/global-condition-on-tag/)
+🔅 [Set Values To The Product Individually](https://minmaxquantity.com/set-values-to-the-product-individually/)
+🔅 [Multiply Price By Quantity (Premium) ](https://minmaxquantity.com/multiply-price-by-quantity/)
+🔅 [Decimal Quantity (Premium) ](https://minmaxquantity.com/decimal-quantity/)
+🔅 [Set values on each variation (Premium) ](https://minmaxquantity.com/set-values-on-each-variation/)
+🔅 [Set Conditions On Cart Page (Premium) ](https://minmaxquantity.com/set-conditions-on-cart-page/)
+🔅 [Exclude/Include Products On Cart Page (Premium) ](https://minmaxquantity.com/exclude-include-products-on-cart-page/)
 
 
 **🏆 World #1 WordPress Minimum Maximum Quantity & Step Control Plugin for WooCommerce. Most active and installed plugins than others.**
@@ -92,41 +92,41 @@ function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )
 👉 Set different messages of the minimum/maximum quantity restriction.<br>
 
 **🚩 FEATURES OF GLOBAL CONDITIONS:**
-👉 Set global values for the whole shop. This condition will apply to all products. [Click here](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/)<br>
-👉 Set conditions category-wise. [Click here](https://codeastrology.com/min-max-quantity/global-condition-on-categories/)<br>
+👉 Set global values for the whole shop. This condition will apply to all products. [Click here](https://minmaxquantity.com/set-global-condition-on-whole-shop/)<br>
+👉 Set conditions category-wise. [Click here](https://minmaxquantity.com/global-condition-on-categories/)<br>
 
 **🚩 FEATURES OF SET CONDITIONS ON SINGLE PRODUCT**
 🔅 You can set values for each product individually.<br>
-👉 [Demo](https://codeastrology.com/min-max-quantity/product/hoodie/)<br>
-👉 [Documentations](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
+👉 [Demo](https://minmaxquantity.com/product/hoodie/)<br>
+👉 [Documentations](https://minmaxquantity.com/set-values-on-each-variation/)
 
 🔅 You can increase or decrease a product's quantity on the single product page, and the price will increase or decrease in accordance with the quantity.<br>
-👉 [Demo](https://codeastrology.com/min-max-quantity/product/hoodie/)
-👉 [Documentations](https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/)
+👉 [Demo](https://minmaxquantity.com/product/hoodie/)
+👉 [Documentations](https://minmaxquantity.com/multiply-price-by-quantity/)
 
 🔅 You can set a decimal quantity For your products with the help of our plugin.<br>
-👉 [Demo](https://codeastrology.com/min-max-quantity/product/sunglasses/)
-👉 [Documentations](https://codeastrology.com/min-max-quantity/decimal-quantity/)
+👉 [Demo](https://minmaxquantity.com/product/sunglasses/)
+👉 [Documentations](https://minmaxquantity.com/decimal-quantity/)
 
 🔅 You can set values for every variation of a single product<br>
-👉 [Demo](https://codeastrology.com/min-max-quantity/product/hoodie/)
-👉 [Documentations](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
+👉 [Demo](https://minmaxquantity.com/product/hoodie/)
+👉 [Documentations](https://minmaxquantity.com/set-values-on-each-variation/)
 
 
 **🚩 FEATURES OF VARIABLE PRODUCT QUANTITY**
 
 --> Set minimum variable product order quantities (cart total minimum quantity or per item minimum quantity).<br>
 --> Set maximum variable product order quantities (cart total maximum quantity or per item maximum quantity).<br>
-[👉 CLICK HERE TO LEARN MORE 👈](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
+[👉 CLICK HERE TO LEARN MORE 👈](https://minmaxquantity.com/set-values-on-each-variation/)
 
 **🚩 FEATURES OF TAXONOMY:**
---> You can set conditions for a specific category. [Click here](https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/)<br>
---> You can set conditions for a specific Tag. [Click here](https://codeastrology.com/min-max-quantity/global-condition-on-tag/)<br>
+--> You can set conditions for a specific category. [Click here](https://minmaxquantity.com/set-conditions-to-a-specific-category/)<br>
+--> You can set conditions for a specific Tag. [Click here](https://minmaxquantity.com/global-condition-on-tag/)<br>
  
 **🚩 FEATURES OF CONDITIONS SET ON CART PAGE (PRO)**
---> Set a minimum and maximum  order quantity required to checkout. [Click here](https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/)<br>
---> Set a minimum and maximum price for purchasing products. [Click here](https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/)(<br>
---> Exclude/Include Products On Cart Page. [Click here](https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/)<br>
+--> Set a minimum and maximum  order quantity required to checkout. [Click here](https://minmaxquantity.com/set-conditions-on-cart-page/)<br>
+--> Set a minimum and maximum price for purchasing products. [Click here](https://minmaxquantity.com/set-conditions-on-cart-page/)(<br>
+--> Exclude/Include Products On Cart Page. [Click here](https://minmaxquantity.com/exclude-include-products-on-cart-page/)<br>
 
 **🚩 MORE OPTIONS AND FLEXIBILITY IN CUSTOMIZING**
 
@@ -203,7 +203,7 @@ Learn more about how [Appsero collects and uses this data](https://appsero.com/p
 == Frequently Asked Questions ==
 
 = Does Min/Max Quantities work with variable products? =
-Yes, it work with  variable, to learn click on this [tutorial link.](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
+Yes, it work with  variable, to learn click on this [tutorial link.](https://minmaxquantity.com/set-values-on-each-variation/)
 
 = Is it working on WooCommerce Cart/Checkout block? =
 Yes, it is. 
@@ -215,7 +215,7 @@ Yes, it is. Min max step need to set only to main product.
 Yes, Disable ajax add to cart from WooCommerce setting. uncheck [WooCommerce -> Products(Tab) -> Enable AJAX add to cart buttons on archives]
 
 = Can I set a minimum, maximum, default, or step for all products at once? =
-Yes, to learn more, please [click](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/) on this link.
+Yes, to learn more, please [click](https://minmaxquantity.com/set-global-condition-on-whole-shop/) on this link.
 
 = Does the cart have a separate minimum, maximum, or step limit rule? =
 Yes, you need to set a separate cart rule.
@@ -245,13 +245,13 @@ Very easy. Just add a new product or edit an existing product. You will see a ta
 Yes.
 
 = Where do I get to buy the Min Max Quantity & Step Control plugin pro version? =
-To buy the Pro version, click on this [link](https://codeastrology.com/min-max-quantity/pricing/).
+To buy the Pro version, click on this [link](https://minmaxquantity.com/pricing/).
 
 = Is it suitable for any theme ? =
 Yes. The Max Quantity & Step Control plugin will adapt to your theme design.
 
 = Where can I find documentation and user guides? =
-You will get all the useful [documents](https://codeastrology.com/min-max-quantity/documentation/) on our site.
+You will get all the useful [documents](https://minmaxquantity.com/documentation/) on our site.
 
 = Where can I get the video tutorials? =
 You can watch our video tutorial on CodeAstrology's  [YouTube](https://www.youtube.com/watch?v=keKRQlxVxmU&list=PLV1ooYxywkSV84cfl6PKw81Fspy72_KYm) channels.
@@ -264,6 +264,9 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 8.1.0 =
+* Bug fixed and optimized.
 
 = 8.0.9 =
 * Fixed: Save issue fixed.

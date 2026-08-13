@@ -28,7 +28,7 @@
             <td>
                 <div class="wcmmq-form-info">
                     Minimum value for input box. it's Global. 
-                    <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                    <?php wcmmq_doc_link('https://minmaxquantity.com/set-global-condition-on-whole-shop/'); ?>
                 </div> 
             </td>
         </tr>
@@ -45,7 +45,7 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
-                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                <?php wcmmq_doc_link('https://minmaxquantity.com/set-global-condition-on-whole-shop/'); ?>
                 </div> 
             </td>
         </tr>
@@ -65,7 +65,7 @@
             <td>
                 <div class="wcmmq-form-info">
                     this is step for input filed
-                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                <?php wcmmq_doc_link('https://minmaxquantity.com/set-global-condition-on-whole-shop/'); ?>
                 </div> 
             </td>
         </tr>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo esc_attr( $saved_data[WC_MMQ_PREFIX . 'default_quantity'] ); ?>"  type="number" step=any>
-                        <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                        <?php wcmmq_doc_link('https://minmaxquantity.com/set-global-condition-on-whole-shop/'); ?>
                     </div>
                 </div>
             </td>
@@ -182,7 +182,7 @@
             <td>
                 <div class="wcmmq-form-info">
 
-                    <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
+                    <?php wcmmq_doc_link('https://minmaxquantity.com/add-quantity-box-on-shop-page/'); ?>
                     <p><b>Nee pro, if want qty box for variable product.</b></p>
                     <p>
                     For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
@@ -213,7 +213,7 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
-                    <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-on-woocommerce-order-page/'); ?>
+                    <?php wcmmq_doc_link('https://minmaxquantity.com/set-conditions-on-woocommerce-order-page/'); ?>
                 </div> 
             </td>
         </tr>
@@ -239,7 +239,7 @@
                 </td>
                 <td>
                     <div class="wcmmq-form-info">
-                        <a href="https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
+                        <a href="https://minmaxquantity.com/multiply-price-by-quantity/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
                         <p>Product price will multiply by the quantity before being displayed on a single product page and will Increase or decrease in accordance with the quantity. </p>
                     </div>
                 </td>

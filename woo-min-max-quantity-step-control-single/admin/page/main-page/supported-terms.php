@@ -82,12 +82,12 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
             </td>
             <td>
                 <div class="wcmmq-form-info">
-                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/'); ?>
+                <?php wcmmq_doc_link('https://minmaxquantity.com/set-conditions-to-a-specific-category/'); ?>
                 <p>Set Taxonomy wise miminum, maximum and step quantity.</p>
                 <?php if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){ ?>
                 <p class="wcmmq_terms_promotion wcmmq-input-decimal-msg-free">
                 <?php 
-                    echo esc_html__('For Mulitple Terms, Such: Category, Tag, Color, Size or any other taxonomy. Need Pro version. ','woo-min-max-quantity-step-control-single');?> <a href="https://codeastrology.com/min-max-quantity/pricing/"><?php echo esc_html__('Upgrade to PRO','woo-min-max-quantity-step-control-single');?></a>    
+                    echo esc_html__('For Mulitple Terms, Such: Category, Tag, Color, Size or any other taxonomy. Need Pro version. ','woo-min-max-quantity-step-control-single');?> <a href="https://minmaxquantity.com/pricing/"><?php echo esc_html__('Upgrade to PRO','woo-min-max-quantity-step-control-single');?></a>    
                 </p>
                 <?php
                     };

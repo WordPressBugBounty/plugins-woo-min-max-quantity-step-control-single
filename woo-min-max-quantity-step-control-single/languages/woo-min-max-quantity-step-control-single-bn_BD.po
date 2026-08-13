@@ -213,8 +213,8 @@ msgid "https://codeastrology.com"
 msgstr "https://codeastrology.com"
 
 #. URI of the plugin
-msgid "https://codeastrology.com/min-max-quantity/"
-msgstr "https://codeastrology.com/min-max-quantity/"
+msgid "https://minmaxquantity.com/"
+msgstr "https://minmaxquantity.com/"
 
 #: admin/functions.php:229
 msgid ""

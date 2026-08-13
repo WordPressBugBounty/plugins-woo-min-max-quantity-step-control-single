@@ -186,7 +186,7 @@ function wcmmq_social_links(){
             'ticket'   => ['url' => 'https://codeastrology.com/my-support/?utm=Plugin_Social', 'title' => 'Create Ticket'],
             'web'   => ['url' => 'https://codeastrology.com/?utm=Plugin_Social', 'title' => 'CodeAstrology'],
             'wpt'   => ['url' => 'https://wooproducttable.com/?utm=Plugin_Social', 'title' => 'Woo Product Table - Create Products Table'],
-            'min-max'   => ['url' => 'https://codeastrology.com/min-max-quantity/?utm=Plugin_Social', 'title' => 'CodeAstrology Min Max Step'],
+            'min-max'   => ['url' => 'https://minmaxquantity.com/?utm=Plugin_Social', 'title' => 'CodeAstrology Min Max Step'],
             'linkedin'   => ['url' => 'https://www.linkedin.com/company/codeastrology'],
             'youtube'   => ['url' => 'https://www.youtube.com/c/codeastrology'],
             'facebook'   => ['url' => 'https://www.facebook.com/codeAstrology'],

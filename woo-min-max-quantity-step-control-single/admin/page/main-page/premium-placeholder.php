@@ -115,7 +115,7 @@
                 </td>
                 <td>
                     <div class="wcmmq-form-info">
-                        <a href="https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
+                        <a href="https://minmaxquantity.com/set-conditions-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
                     </div>
                 </td>
             </tr>
@@ -141,7 +141,7 @@
                 </td>
                 <td>
                     <div class="wcmmq-form-info">
-                        <a href="https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
+                        <a href="https://minmaxquantity.com/set-conditions-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
                     </div>
                 </td>
             </tr>
@@ -158,7 +158,7 @@
                 </td>
                 <td>
                     <div class="wcmmq-form-info">
-                        <a href="https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
+                        <a href="https://minmaxquantity.com/exclude-include-products-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
                         <p>Insert Products IDs. Use a comma as a separator. (Example: 45,84,5).  Cart conditions will not apply to those products</p>
                     </div>
                 </td>
@@ -176,7 +176,7 @@
                 </td>
                 <td>
                     <div class="wcmmq-form-info">
-                        <a href="https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
+                        <a href="https://minmaxquantity.com/exclude-include-products-on-cart-page/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
                         <p>Insert Products IDs. Use a comma as a separator. (Example: 45,84,5).  Cart conditions will apply only those products</p>
                     </div>
                 </td>

@@ -134,7 +134,7 @@ class Notice_Framework {
                 'buttons'       => array(
                     array(
                         'text'  => 'Upgrade Now - 50% OFF',
-                        'url'   => 'https://codeastrology.com/min-max-quantity/pricing/',
+                        'url'   => 'https://minmaxquantity.com/pricing/',
                         'class' => 'ca-fw-btn-primary',
                         'icon'  => 'dashicons-cart',
                     ),
@@ -178,14 +178,14 @@ class Notice_Framework {
         return array(
             array(
                 'text'   => 'Claim Discount',
-                'url'    => 'https://codeastrology.com/min-max-quantity/pricing/',
+                'url'    => 'https://minmaxquantity.com/pricing/',
                 'class'  => 'ca-fw-btn-primary',
                 'icon'   => 'dashicons-cart',
                 'target' => '_blank',
             ),
             array(
                 'text'   => 'View Features',
-                'url'    => 'https://codeastrology.com/min-max-quantity/',
+                'url'    => 'https://minmaxquantity.com/',
                 'class'  => 'ca-fw-btn-secondary',
                 'target' => '_blank',
             ),

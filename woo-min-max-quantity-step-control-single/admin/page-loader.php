@@ -26,6 +26,8 @@ class Page_Loader extends Base
     public function __construct()
     {
 
+        require_once $this->base_dir . 'admin/class-codeastrology-sale-notice.php';
+
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
         $this->is_premium_installed = wcmmq_is_premium_installed();
         $this->notice_framework = new Notice_Framework();
@@ -43,6 +45,45 @@ class Page_Loader extends Base
         $this->topbar_sub_title = __("Manage and Settings", 'woo-min-max-quantity-step-control-single');
 
         $this->module_controller = new Module_Controller();
+
+        \CodeAstrology\Shared\Sale_Notice::register( array(
+            'key'           => 'min-max-control',
+            'plugin_name'   => 'Min Max Control',
+            'capability'    => apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce' ),
+            'screen_tokens' => array( 'wcmmq' ),
+            'purchase_url'  => 'https://minmaxquantity.com/pricing/',
+            'has_premium'   => true,
+            'is_premium'    => function() {
+                return defined( 'WC_MMQ_PRO_VERSION' );
+            },
+            'headline'      => __( 'Super Sale on Min Max Control Pro', 'woo-min-max-quantity-step-control-single' ),
+            'description'   => __( 'Unlock advanced quantity rules and premium features at a special limited-time price.', 'woo-min-max-quantity-step-control-single' ),
+        ) );
+
+        \CodeAstrology\Shared\Expert_Services::register( array(
+            'key'            => 'min-max-control',
+            'plugin_name'    => __( 'Min Max Control', 'woo-min-max-quantity-step-control-single' ),
+            'plugin_version' => WC_MMQ_VERSION,
+            'parent_slug'    => $this->main_slug,
+            'menu_slug'      => 'wcmmq-hire-expert',
+            'capability'     => apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce' ),
+            'asset_url'      => $this->base_url . 'assets/css/expert-services.css',
+            'headline'       => __( 'Need Any WordPress or WooCommerce Work Done?', 'woo-min-max-quantity-step-control-single' ),
+            'description'    => __( 'Whatever your WordPress or WooCommerce requirement—custom development, plugin customization, bug fixing, integrations, or store improvements—our experienced experts are ready to help. We deliver reliable, high-quality work at an affordable budget.', 'woo-min-max-quantity-step-control-single' ),
+            'settings_description' => __( 'Need custom quantity rules, plugin customization, or another WordPress and WooCommerce workflow? Our experts can build it for you.', 'woo-min-max-quantity-step-control-single' ),
+            'services'       => array(
+                __( 'Custom minimum, maximum, and step quantity rules', 'woo-min-max-quantity-step-control-single' ),
+                __( 'WooCommerce plugin development and customization', 'woo-min-max-quantity-step-control-single' ),
+                __( 'Cart, checkout, pricing, and ordering workflows', 'woo-min-max-quantity-step-control-single' ),
+                __( 'Product tables, bulk ordering, and B2B features', 'woo-min-max-quantity-step-control-single' ),
+                __( 'Google Sheets, API, and third-party integrations', 'woo-min-max-quantity-step-control-single' ),
+                __( 'Bug fixing, performance optimization, and maintenance', 'woo-min-max-quantity-step-control-single' ),
+            ),
+            'contact_email'  => 'contact@codeastrology.com',
+            'gmail_email'    => 'codersaiful@gmail.com',
+            'contact_url'    => 'https://codeastrology.com/contact-us/',
+            'company_url'    => 'https://codeastrology.com/',
+        ) );
     }
 
     public function run()

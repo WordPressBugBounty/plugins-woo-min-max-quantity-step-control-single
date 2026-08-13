@@ -57,7 +57,7 @@
                     <div class="form-field col-lg-6">
                         <div class="wcmmq-important-link-area">
                             <a class="wcmmq-btn reset wcmmq-has-icon wcmmq-btn-tiny" 
-                              href="https://codeastrology.com/min-max-quantity/"
+                              href="https://minmaxquantity.com/"
                               title="Pro Feature and Min Max Control Home Page"
                               target="_blank">
                                 <span><i class="wcmmq_icon-globe-inv"></i></span>    
