@@ -5,7 +5,7 @@ Tags: woocommerce limit quantities, WC Min Max Quantities, min and max to purcha
 Requires at least: 4.0.0
 Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 8.1.0
+Stable tag: 8.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,12 @@ Min Max Control plugin offers to set product's minimum, maximum quantity and ste
 [Doc](https://minmaxquantity.com/documentation/) | [Demo](https://minmaxquantity.com/product/hoodie) | [Get Premium](https://minmaxquantity.com/pricing/)
 
 *Min Max Control*(Min Max Quantity & Step Control for WooCommerce) plugin offers to set product’s 
+
+= See It in Action =
+
+Watch how Min Max Control works:
+
+https://www.youtube.com/watch?v=9AMT-wpJlEI
 
 🎉 Minimum Quantity<br>
 🎉 Maximum Quantity<br>
@@ -264,6 +270,9 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 8.1.1 =
+* Bug fixed and optimized.
 
 = 8.1.0 =
 * Bug fixed and optimized.

@@ -53,6 +53,7 @@ class Page_Loader extends Base
             'screen_tokens' => array( 'wcmmq' ),
             'purchase_url'  => 'https://minmaxquantity.com/pricing/',
             'has_premium'   => true,
+            'exclude_pages' => array( 'wcmmq-free-store-audit' ),
             'is_premium'    => function() {
                 return defined( 'WC_MMQ_PRO_VERSION' );
             },
@@ -65,12 +66,20 @@ class Page_Loader extends Base
             'plugin_name'    => __( 'Min Max Control', 'woo-min-max-quantity-step-control-single' ),
             'plugin_version' => WC_MMQ_VERSION,
             'parent_slug'    => $this->main_slug,
-            'menu_slug'      => 'wcmmq-hire-expert',
+            'menu_slug'      => 'wcmmq-free-store-audit',
+            'menu_title'     => __( 'Free Store Audit', 'woo-min-max-quantity-step-control-single' ),
             'capability'     => apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce' ),
             'asset_url'      => $this->base_url . 'assets/css/expert-services.css',
-            'headline'       => __( 'Need Any WordPress or WooCommerce Work Done?', 'woo-min-max-quantity-step-control-single' ),
-            'description'    => __( 'Whatever your WordPress or WooCommerce requirement—custom development, plugin customization, bug fixing, integrations, or store improvements—our experienced experts are ready to help. We deliver reliable, high-quality work at an affordable budget.', 'woo-min-max-quantity-step-control-single' ),
-            'settings_description' => __( 'Need custom quantity rules, plugin customization, or another WordPress and WooCommerce workflow? Our experts can build it for you.', 'woo-min-max-quantity-step-control-single' ),
+            'asset_pages'    => array( 'wcmmq-min-max-control' ),
+            'page_mode'      => 'audit',
+            'headline'       => __( 'Get a Free Audit of Your WooCommerce Store', 'woo-min-max-quantity-step-control-single' ),
+            'description'    => __( 'Discover what may be slowing down, weakening, or costing sales on your store. We audit speed, plugins, SEO visibility, checkout, basic security signals, and your quantity-rule experience—then share practical recommendations.', 'woo-min-max-quantity-step-control-single' ),
+            'settings_eyebrow' => __( 'FREE STORE AUDIT', 'woo-min-max-quantity-step-control-single' ),
+            'settings_description' => __( 'Let our team audit your quantity rules and the key speed, SEO, checkout, plugin, and security signals across your WooCommerce store.', 'woo-min-max-quantity-step-control-single' ),
+            'settings_button_text' => __( 'Request Free Audit', 'woo-min-max-quantity-step-control-single' ),
+            'audit_focus_icon' => 'dashicons-editor-ol',
+            'audit_focus_title' => __( 'Quantity Rules & Ordering UX', 'woo-min-max-quantity-step-control-single' ),
+            'audit_focus_description' => __( 'Minimum, maximum, and step rules, customer messages, product and cart behavior, and possible ordering friction.', 'woo-min-max-quantity-step-control-single' ),
             'services'       => array(
                 __( 'Custom minimum, maximum, and step quantity rules', 'woo-min-max-quantity-step-control-single' ),
                 __( 'WooCommerce plugin development and customization', 'woo-min-max-quantity-step-control-single' ),
@@ -81,7 +90,7 @@ class Page_Loader extends Base
             ),
             'contact_email'  => 'contact@codeastrology.com',
             'gmail_email'    => 'codersaiful@gmail.com',
-            'contact_url'    => 'https://codeastrology.com/contact-us/',
+            'contact_url'    => 'https://forms.gle/EQXNvD6LBh8HqQjy9',
             'company_url'    => 'https://codeastrology.com/',
         ) );
     }
